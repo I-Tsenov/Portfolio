@@ -3,19 +3,36 @@
 .logoHeader {
     text-decoration: none;
     font-size: 2.3rem;
-    color: var(--text);
+    color: var(--primary);
     font-weight: $fw-bold;
 
     &:hover {
-        color: rgb(15, 199, 180);
-
+        color: var(--secondary);
     }
 }
 
 .header {
     display: flex;
+    color: var(--text);
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem;
-    background: var(--gradient-accent);
+    background: var(--bg);
+}
+
+.navItem {
+    text-decoration: none;
+    margin-right: $pad-md;
+    color: var(--text);
+    font-size: $fs-lg;
+    font-weight: $fw-reg;
+}
+
+.navItemActive {
+    @extend .navItem;
+    color: var(--primary);
+    font-weight: $fw-bold;
+    transition:
+        color 0.2s ease,
+        font-weight 0.2s ease;
 }

@@ -1,57 +1,41 @@
 :root {
-  --bg-dark: oklch(0.92 0.035 277);
-  --bg: oklch(0.96 0.035 277);
-  --bg-light: oklch(1 0.035 277);
-  --text: oklch(0.15 0.07 277);
-  --text-muted: oklch(0.4 0.07 277);
-  --highlight: oklch(1 0.07 277);
-  --border: oklch(0.6 0.07 277);
-  --border-muted: oklch(0.7 0.07 277);
-  --primary: oklch(0.4 0.1 277);
-  --secondary: oklch(0.4 0.1 97);
-  --danger: oklch(0.5 0.07 30);
-  --warning: oklch(0.5 0.07 100);
-  --success: oklch(0.5 0.07 160);
-  --info: oklch(0.5 0.07 260);
-  --gradient-soft: linear-gradient(135deg, var(--bg-light) 0%, var(--bg) 100%);
-  --gradient-accent: linear-gradient(
-    90deg,
-    var(--primary) 0%,
-    var(--highlight) 100%
-  );
-  --gradient-glow: radial-gradient(
-    circle at top left,
-    var(--info) 0%,
-    var(--bg) 70%
-  );
+    --bg-dark: oklch(0.92 0.04 200);
+    --bg: oklch(0.96 0.04 200);
+    --bg-light: oklch(0.99 0.04 200);
+    --text: oklch(0.15 0.08 230);
+    --text-muted: oklch(0.42 0.05 230);
+    --highlight: oklch(0.98 0.07 140); /* brighter leaf accent */
+    --border: oklch(0.64 0.05 200);
+    --border-muted: oklch(0.72 0.04 200);
+    --primary: oklch(0.58 0.07 190); /* teal: visible & friendly */
+    --secondary: oklch(0.52 0.06 140); /* mellow green */
+    --danger: oklch(0.6 0.05 25);
+    --warning: oklch(0.6 0.05 80);
+    --success: oklch(0.6 0.05 150);
+    --info: oklch(0.6 0.05 230);
+    --gradient-soft: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-dark) 100%);
+    --gradient-accent: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+    --gradient-glow: radial-gradient(circle at top right, var(--info) 0%, var(--bg) 80%);
 }
 
-[data-theme="dark"] {
-  --bg-dark: oklch(0.1 0.035 277);
-  --bg: oklch(0.15 0.035 277);
-  --bg-light: oklch(0.2 0.035 277);
-  --text: oklch(0.96 0.07 277);
-  --text-muted: oklch(0.76 0.07 277);
-  --highlight: oklch(0.5 0.07 277);
-  --border: oklch(0.4 0.07 277);
-  --border-muted: oklch(0.3 0.07 277);
-  --primary: oklch(0.76 0.1 277);
-  --secondary: oklch(0.76 0.1 97);
-  --danger: oklch(0.7 0.07 30);
-  --warning: oklch(0.7 0.07 100);
-  --success: oklch(0.7 0.07 160);
-  --info: oklch(0.7 0.07 260);
-  --gradient-soft: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg) 100%);
-  --gradient-accent: linear-gradient(
-    90deg,
-    var(--primary) 0%,
-    var(--text-muted) 100%
-  );
-  --gradient-glow: radial-gradient(
-    circle at center,
-    var(--danger) 0%,
-    var(--bg-dark) 80%
-  );
+[data-theme='dark'] {
+    --bg-dark: oklch(0.14 0.04 200);
+    --bg: oklch(0.2 0.04 200);
+    --bg-light: oklch(0.26 0.035 200);
+    --text: oklch(94.684% 0.05171 206.948);
+    --text-muted: oklch(0.74 0.06 230);
+    --highlight: oklch(0.66 0.07 140); /* gentle highlight */
+    --border: oklch(0.46 0.05 200);
+    --border-muted: oklch(0.36 0.03 200);
+    --primary: oklch(0.76 0.08 190); /* brighter teal pop */
+    --secondary: oklch(0.66 0.07 140); /* green with contrast */
+    --danger: oklch(0.72 0.05 25);
+    --warning: oklch(0.72 0.05 80);
+    --success: oklch(0.72 0.05 150);
+    --info: oklch(0.72 0.05 230);
+    --gradient-soft: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-light) 100%);
+    --gradient-accent: linear-gradient(90deg, var(--primary) 0%, var(--text-muted) 100%);
+    --gradient-glow: radial-gradient(circle at center, var(--info) 0%, var(--bg-dark) 85%);
 }
 
 // Base
@@ -59,7 +43,7 @@ $border-radius-sm: 6px;
 $border-radius-lg: 12px;
 
 // Typography
-$font-family-base: "Segoe UI", sans-serif;
+$font-family-base: 'Segoe UI', sans-serif;
 $fs-base: 1rem;
 $fs-lg: 1.25rem;
 $fs-sm: 0.875rem;
@@ -83,10 +67,10 @@ $pad-xl: 32px;
 
 // Breakpoints
 $breakpoints: (
-  sm: 480px,
-  md: 768px,
-  lg: 1024px,
-  xl: 1280px,
+    sm: 480px,
+    md: 768px,
+    lg: 1024px,
+    xl: 1280px,
 );
 
 // Overlays
@@ -95,7 +79,7 @@ $disabled-opacity: 0.5;
 $backdrop-blur: blur(8px);
 
 :root {
-  @each $name, $value in $breakpoints {
-    --breakpoint-#{$name}: #{$value};
-  }
+    @each $name, $value in $breakpoints {
+        --breakpoint-#{$name}: #{$value};
+    }
 }
