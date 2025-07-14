@@ -1,0 +1,49 @@
+@use '../../styles/design.scss' as *;
+
+.button {
+    padding: $pad-sm $pad-md;
+    font-size: $fs-base;
+    border-radius: $border-radius-sm;
+    font-weight: $fw-bold;
+    border: none;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.primary {
+    background-color: var(--primary);
+    color: var(--white);
+
+    &:hover:not(.disabled) {
+        background-color: var(--primary-hover);
+    }
+}
+
+.secondary {
+    background-color: var(--secondary);
+    color: var(--white);
+
+    &:hover:not(.disabled) {
+        background-color: var(--secondary-hover);
+    }
+}
+
+.ghost {
+    background: none;
+    color: var(--text);
+    border: 1px solid var(--border);
+
+    &:hover:not(.disabled) {
+        background-color: var(--bg-light);
+    }
+}
+
+.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}

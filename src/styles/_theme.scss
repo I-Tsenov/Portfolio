@@ -8,11 +8,31 @@
     --border: oklch(0.64 0.05 200);
     --border-muted: oklch(0.72 0.04 200);
     --primary: oklch(0.58 0.07 190); /* teal: visible & friendly */
+    --primary-hover: oklch(0.64 0.07 190); /* slightly brighter teal */
     --secondary: oklch(0.52 0.06 140); /* mellow green */
+    --secondary-hover: oklch(0.58 0.06 140); /* gentle lift in brightness */
     --danger: oklch(0.6 0.05 25);
     --warning: oklch(0.6 0.05 80);
     --success: oklch(0.6 0.05 150);
     --info: oklch(0.6 0.05 230);
+    //neutrals
+    --white: oklch(0.98 0.01 200); /* near-white */
+    --black: oklch(0.02 0.01 200); /* near-black */
+    --neutral-00: oklch(0.98 0.01 200); /* near-white */
+    --neutral-10: oklch(0.9 0.02 200); /* pale gray */
+    --neutral-20: oklch(0.8 0.03 200); /* soft gray */
+    --neutral-30: oklch(0.6 0.03 200); /* mid gray */
+    --neutral-40: oklch(0.4 0.02 200); /* dark muted */
+    --neutral-50: oklch(0.2 0.02 200); /* deep background */
+    --disabled: oklch(0.5 0.01 200); /* subdued tone for inactive UI */
+    //states
+    --danger-hover: oklch(0.66 0.06 25); /* slightly deeper red for hover */
+    --warning-hover: oklch(0.66 0.06 80); /* warmer hover effect */
+    --success-hover: oklch(0.66 0.06 150); /* vibrant green accent */
+    --info-hover: oklch(0.66 0.06 230); /* intense blue tone */
+    --active: oklch(0.52 0.08 180); /* teal-blue for selected states */
+    --focus: oklch(0.86 0.09 190); /* bright highlight for focus rings */
+    //gradients
     --gradient-soft: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-dark) 100%);
     --gradient-accent: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
     --gradient-glow: radial-gradient(circle at top right, var(--info) 0%, var(--bg) 80%);
@@ -27,12 +47,15 @@
     --highlight: oklch(0.66 0.07 140); /* gentle highlight */
     --border: oklch(0.46 0.05 200);
     --border-muted: oklch(0.36 0.03 200);
-    --primary: oklch(0.76 0.08 190); /* brighter teal pop */
-    --secondary: oklch(0.66 0.07 140); /* green with contrast */
+    --primary: oklch(0.65 0.08 190);
+    --primary-hover: oklch(0.70 0.08 190); /* lighter for subtle glow */
+    --secondary: oklch(0.66 0.07 140);
+    --secondary-hover: oklch(0.72 0.07 140); /* accent lift */
     --danger: oklch(0.72 0.05 25);
     --warning: oklch(0.72 0.05 80);
     --success: oklch(0.72 0.05 150);
     --info: oklch(0.72 0.05 230);
+    //gradients
     --gradient-soft: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-light) 100%);
     --gradient-accent: linear-gradient(90deg, var(--primary) 0%, var(--text-muted) 100%);
     --gradient-glow: radial-gradient(circle at center, var(--info) 0%, var(--bg-dark) 85%);
@@ -59,11 +82,11 @@ $shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
 $shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.15);
 
 // Spacing / padding / margins
-$pad-xs: 4px;
-$pad-sm: 8px;
-$pad-md: 16px;
-$pad-lg: 24px;
-$pad-xl: 32px;
+$pad-xs: 0.25rem; // 4px if root is 16px
+$pad-sm: 0.5rem; // 8px
+$pad-md: 1rem; // 16px
+$pad-lg: 1.5rem; // 24px
+$pad-xl: 2rem; // 32px
 
 // Breakpoints
 $breakpoints: (
@@ -82,4 +105,11 @@ $backdrop-blur: blur(8px);
     @each $name, $value in $breakpoints {
         --breakpoint-#{$name}: #{$value};
     }
+}
+
+.transition-color {
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
 }
