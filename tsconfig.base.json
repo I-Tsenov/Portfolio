@@ -1,0 +1,65 @@
+{
+  "compilerOptions": {
+    // Sets the JavaScript language version for emitted output
+    "target": "ES2020",
+    // Specifies the libraries to include in the compilation (e.g., browser APIs)
+    "lib": [
+      "ES2020",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    // Base directory to resolve non-relative module imports
+    "baseUrl": "./",
+    // Uses bundler-style module resolution, optimized for tools like Vite
+    "moduleResolution": "bundler",
+    // Allows imports with .ts file extensions explicitly
+    "allowImportingTsExtensions": true,
+    // Keeps original module specifiers without rewriting them
+    "verbatimModuleSyntax": true,
+    // Forces TypeScript to treat all files as modules
+    "moduleDetection": "force",
+    // JSX code will compile using the modern JSX transform (`react/jsx-runtime`)
+    "jsx": "react-jsx",
+    // Enables compatibility with modules that use CommonJS-style exports
+    "esModuleInterop": true,
+    // Skips type-checking of library files for faster builds
+    "skipLibCheck": true,
+    // Allows importing `.json` files as modules
+    "resolveJsonModule": true,
+    // Ensures each file can be safely transpiled in isolation
+    "isolatedModules": true,
+    // Disables emitting output; useful when another tool handles bundling (like Vite)
+    "noEmit": true,
+    // Enables all strict type-checking options
+    "strict": true,
+    // Raises an error when unused local variables are detected
+    "noUnusedLocals": true,
+    // Raises an error when unused function parameters are detected
+    "noUnusedParameters": true,
+    // Only parses TypeScript constructs that are erasable at runtime
+    "erasableSyntaxOnly": true,
+    // Prevents accidental fallthrough in switch-case blocks
+    "noFallthroughCasesInSwitch": true,
+    // Flags side-effect-only imports unless explicitly marked
+    "noUncheckedSideEffectImports": true,
+    // Maps shorthand import paths to actual directories in your project
+    "paths": {
+      "@store/*": [
+        "app/*"
+      ], // Lets you import from @store/... instead of app/...
+      "@features/*": [
+        "src/features/*"
+      ], // Easier import for feature modules
+      "@components/*": [
+        "src/components/*"
+      ], // Simplified import for React components
+      "@assets/*": [
+        "src/assets/*"
+      ] // Simplified import for assets like images, icons etc.
+    },
+    // Includes type definitions from the Node.js environment
+    "types": [
+      "node"
+    ]
+  }
+}

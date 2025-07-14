@@ -1,0 +1,101 @@
+:root {
+  --bg-dark: oklch(0.92 0.035 277);
+  --bg: oklch(0.96 0.035 277);
+  --bg-light: oklch(1 0.035 277);
+  --text: oklch(0.15 0.07 277);
+  --text-muted: oklch(0.4 0.07 277);
+  --highlight: oklch(1 0.07 277);
+  --border: oklch(0.6 0.07 277);
+  --border-muted: oklch(0.7 0.07 277);
+  --primary: oklch(0.4 0.1 277);
+  --secondary: oklch(0.4 0.1 97);
+  --danger: oklch(0.5 0.07 30);
+  --warning: oklch(0.5 0.07 100);
+  --success: oklch(0.5 0.07 160);
+  --info: oklch(0.5 0.07 260);
+  --gradient-soft: linear-gradient(135deg, var(--bg-light) 0%, var(--bg) 100%);
+  --gradient-accent: linear-gradient(
+    90deg,
+    var(--primary) 0%,
+    var(--highlight) 100%
+  );
+  --gradient-glow: radial-gradient(
+    circle at top left,
+    var(--info) 0%,
+    var(--bg) 70%
+  );
+}
+
+[data-theme="dark"] {
+  --bg-dark: oklch(0.1 0.035 277);
+  --bg: oklch(0.15 0.035 277);
+  --bg-light: oklch(0.2 0.035 277);
+  --text: oklch(0.96 0.07 277);
+  --text-muted: oklch(0.76 0.07 277);
+  --highlight: oklch(0.5 0.07 277);
+  --border: oklch(0.4 0.07 277);
+  --border-muted: oklch(0.3 0.07 277);
+  --primary: oklch(0.76 0.1 277);
+  --secondary: oklch(0.76 0.1 97);
+  --danger: oklch(0.7 0.07 30);
+  --warning: oklch(0.7 0.07 100);
+  --success: oklch(0.7 0.07 160);
+  --info: oklch(0.7 0.07 260);
+  --gradient-soft: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg) 100%);
+  --gradient-accent: linear-gradient(
+    90deg,
+    var(--primary) 0%,
+    var(--text-muted) 100%
+  );
+  --gradient-glow: radial-gradient(
+    circle at center,
+    var(--danger) 0%,
+    var(--bg-dark) 80%
+  );
+}
+
+// Base
+$border-radius-sm: 6px;
+$border-radius-lg: 12px;
+
+// Typography
+$font-family-base: "Segoe UI", sans-serif;
+$fs-base: 1rem;
+$fs-lg: 1.25rem;
+$fs-sm: 0.875rem;
+$lh-base: 1.5; // line-height
+$fw-reg: 400;
+$fw-bold: 700;
+$letter-spacing-tight: -0.02em;
+$letter-spacing-wide: 0.04em;
+
+// Shadows/elevations
+$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.15);
+
+// Spacing / padding / margins
+$pad-xs: 4px;
+$pad-sm: 8px;
+$pad-md: 16px;
+$pad-lg: 24px;
+$pad-xl: 32px;
+
+// Breakpoints
+$breakpoints: (
+  sm: 480px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px,
+);
+
+// Overlays
+$overlay-bg: rgba(0, 0, 0, 0.5);
+$disabled-opacity: 0.5;
+$backdrop-blur: blur(8px);
+
+:root {
+  @each $name, $value in $breakpoints {
+    --breakpoint-#{$name}: #{$value};
+  }
+}

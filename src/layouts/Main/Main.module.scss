@@ -1,0 +1,9 @@
+@use '../../styles/design.scss' as *;
+
+.mainContainer {
+    text-align: center;
+    background: var(--bg-dark);
+    height: calc(100vh - 8.1rem);
+    font-size: $fs-lg;
+    color: var(--text);
+}

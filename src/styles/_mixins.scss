@@ -1,0 +1,42 @@
+//import theme
+
+@mixin responsive($breakpoint) {
+    $value: map-get($breakpoints, $breakpoint);
+
+    @if $value {
+        @media (min-width: $value) {
+            @content;
+        }
+    }
+}
+
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin respond($size) {
+  @media (min-width: map-get($breakpoints, $size)) {
+    @content;
+  }
+}
+
+
+
+//usage example
+/* 
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.card {
+  background-color: $primary-color;
+  color: $text-color;
+  padding: $spacing-md;
+
+  @include responsive(md) {
+    padding: $spacing-lg;
+  }
+}
+
+*/

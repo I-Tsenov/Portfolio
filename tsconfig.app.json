@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+  },
+  "include": [
+    "src",
+    "app",
+    "src/index.tsx",
+    "vite-env.d.ts"
+  ]
+}

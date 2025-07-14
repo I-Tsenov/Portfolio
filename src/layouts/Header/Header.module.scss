@@ -1,0 +1,21 @@
+@use '../../styles/design.scss' as *;
+
+.logoHeader {
+    text-decoration: none;
+    font-size: 2.3rem;
+    color: var(--text);
+    font-weight: $fw-bold;
+
+    &:hover {
+        color: rgb(15, 199, 180);
+
+    }
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    background: var(--gradient-accent);
+}

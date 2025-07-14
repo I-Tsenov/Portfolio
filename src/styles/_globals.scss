@@ -1,0 +1,34 @@
+@use './_theme.scss' as *;
+
+/* 1. Universal Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 2. Body and Root Setup */
+body {
+    font-family: $font-family-base;
+    font-size: $fs-base;
+    background-color: var(--bg);
+    color: var(--text);
+}
+
+/* 3. Anchor Tags */
+a {
+    color: var(--info);
+    text-decoration: none;
+}
+
+/* 4. Inputs */
+input,
+textarea,
+select {
+    font-family: inherit;
+    background-color: var(--bg);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: var($border-radius-sm);
+    padding: var($pad-xs);
+}
