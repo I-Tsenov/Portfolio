@@ -1,0 +1,21 @@
+.badge {
+    padding: 0.2rem 0.5rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    white-space: nowrap;
+    color: #fff;
+}
+
+.primary {
+    background-color: #007bff;
+}
+.success {
+    background-color: #28a745;
+}
+.warning {
+    background-color: #ffc107;
+}
+.error {
+    background-color: #dc3545;
+}
