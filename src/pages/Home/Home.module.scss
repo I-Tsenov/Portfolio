@@ -1,0 +1,15 @@
+@use '../../styles/design.scss' as *;
+
+.mainWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    padding: $pad-lg;
+}
+.btnWrapper {
+    display: flex;
+    justify-content: center;
+    gap: $pad-md;
+    padding: $pad-md;
+}

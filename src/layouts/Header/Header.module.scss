@@ -2,7 +2,7 @@
 
 .logoHeader {
     text-decoration: none;
-    font-size: 2.3rem;
+    font-size: 2.2rem;
     color: var(--primary);
     font-weight: $fw-bold;
 
@@ -12,17 +12,26 @@
 }
 
 .header {
+    position: relative;
     display: flex;
-    color: var(--text);
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     padding: 1.5rem;
+
+    color: var(--text);
     background: var(--bg);
+}
+
+.navigation {
+    display: flex;
+    gap: $pad-md;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .navItem {
     text-decoration: none;
-    margin-right: $pad-md;
     color: var(--text);
     font-size: $fs-lg;
     font-weight: $fw-reg;

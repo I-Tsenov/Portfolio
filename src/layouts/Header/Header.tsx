@@ -18,7 +18,7 @@ const Header: React.FC = () => {
             <Link className={styles.logoHeader} key="logo_header" to="/">
                 {'< IT >'}
             </Link>
-            <nav>
+            <nav className={styles.navigation}>
                 {navLinks.map((link) => (
                     <Link
                         key={link.to}
