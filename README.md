@@ -1,4 +1,4 @@
-# React + TypeScript + Vite
+# React/Typescript/Redux-toolkit/Vite/CSS-Modules(SASS)
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
