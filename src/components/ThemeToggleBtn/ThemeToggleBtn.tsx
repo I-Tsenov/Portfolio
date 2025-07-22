@@ -4,7 +4,7 @@ import { toggleTheme } from '../../features/Theme/themeSlice';
 import { ReactComponent as MoonIcon } from '@assets/moon_icon.svg';
 import { ReactComponent as SunIcon } from '@assets/sun_icon.svg';
 import Toggle from '@components/Toggle';
-// import Tooltip from '@components/Tooltip';
+import Tooltip from '@components/Tooltip';
 import type { RootState } from '@store/store';
 
 // import styles from './ThemeToggleBtn.module.css'
@@ -24,9 +24,9 @@ const ThemeToggleBtn = () => {
     }, [mode]);
 
     return (
-        // <Tooltip message={`Switch to ${mode === 'light' ? 'dark' : 'light'} mode`}>
-        <Toggle checked={mode === 'light'} onChange={handleToggle} onIcon={<SunIcon />} offIcon={<MoonIcon />} />
-        // </Tooltip>
+        <Tooltip content={`Switch to ${mode === 'light' ? 'dark' : 'light'} mode`} position="top">
+            <Toggle checked={mode === 'light'} onChange={handleToggle} onIcon={<SunIcon />} offIcon={<MoonIcon />} />
+        </Tooltip>
     );
 };
 

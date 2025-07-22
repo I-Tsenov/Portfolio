@@ -16,6 +16,13 @@ export default function Toggle({ checked, onChange, label, onIcon, offIcon }: Pr
                 type="checkbox"
                 checked={checked}
                 onChange={(e) => onChange(e.target.checked)}
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        const input = e.target as HTMLInputElement;
+                        onChange(input.checked);
+                    }
+                }}
                 className={styles.toggleInput}
             />
             <span className={styles.slider}>
