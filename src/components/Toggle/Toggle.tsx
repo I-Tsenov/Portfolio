@@ -1,13 +1,13 @@
 import React from 'react';
 import styles from './Toggle.module.scss';
 
-interface Props {
+type Props = {
     checked: boolean;
     onChange: (value: boolean) => void;
     label?: string;
     onIcon?: React.ReactNode;
     offIcon?: React.ReactNode;
-}
+};
 
 export default function Toggle({ checked, onChange, label, onIcon, offIcon }: Props) {
     return (

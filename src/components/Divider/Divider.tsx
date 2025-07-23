@@ -1,7 +1,7 @@
 // Divider.tsx
 import styles from './Divider.module.scss';
 
-interface Props {
+type Props = {
     vertical?: boolean;
     thickness?: string;
     color?: string;

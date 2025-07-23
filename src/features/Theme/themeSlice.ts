@@ -1,12 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-
 type ThemeMode = 'light' | 'dark';
 
-interface ThemeState {
+type ThemeState = {
     mode: ThemeMode;
-}
+};
 
 const initialState: ThemeState = {
     mode: 'light',

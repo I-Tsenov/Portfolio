@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import styles from './Modal.module.scss';
 
-interface ModalProps {
+type ModalProps =  {
     isOpen: boolean;
     onClose: () => void;
     children: React.ReactNode;

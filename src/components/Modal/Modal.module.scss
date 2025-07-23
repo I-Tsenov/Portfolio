@@ -1,10 +1,12 @@
+@use '@styles/theme' as *;
+
 .overlay {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.4);
+    background: $overlay-bg;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,8 +15,8 @@
 
 .modal {
     background: #fff;
-    padding: 2rem;
-    border-radius: 8px;
+    padding: $pad-xl;
+    border-radius: $border-radius-md;
     min-width: 300px;
     max-width: 600px;
     position: relative;
@@ -26,6 +28,6 @@
     right: 10px;
     background: transparent;
     border: none;
-    font-size: 1.5rem;
+    font-size: $fs-xl;
     cursor: pointer;
 }

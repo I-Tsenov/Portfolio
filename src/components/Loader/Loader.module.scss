@@ -1,15 +1,82 @@
-/* Spinner.module.scss */
+@use '@styles/theme' as *;
+
+// SIMPLEST VERSION
+
+// .spinner {
+//     width: 40px;
+//     height: 40px;
+//     border: 5px solid var(--bg-light);
+//     border-top-color: var(--primary-hover);
+//     border-radius: 50%;
+//     animation: spin 1s linear infinite;
+// }
+
+// @keyframes spin {
+//     to {
+//         transform: rotate(360deg);
+//     }
+// }
+
+// SECOND VERSION - with bounce effect
+/* 
 .spinner {
-    width: 24px;
-    height: 24px;
-    border: 4px solid rgba(0, 0, 0, 0.1);
-    border-top-color: #007bff;
+    width: 40px;
+    height: 40px;
+    border: 5px solid var(--bg-light);
+    border-top-color: var(--primary-hover);
     border-radius: 50%;
-    animation: spin 1s linear infinite;
+    animation: spin-bounce 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+    transform-origin: center;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
 }
 
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
+@keyframes spin-bounce {
+    0% {
+        transform: rotate(0deg) scale(1);
+        box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
+    }
+    40% {
+        transform: rotate(160deg) scale(1.1);
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+    }
+    60% {
+        transform: rotate(200deg) scale(0.95);
+        box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+        box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
+    }
+}
+ */
+
+// THIRD VERSION - with 4-step spin and glow effect
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid transparent;
+    border-top: 4px solid var(--primary-hover);
+    border-radius: 50%;
+    animation: elegant-spin 1.5s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+    transform-origin: center;
+}
+
+@keyframes elegant-spin {
+    0% {
+        transform: rotate(0deg) scale(1);
+        box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    }
+    30% {
+        transform: rotate(120deg) scale(1.05);
+        box-shadow: 0 0 6px var(--primary-hover);
+    }
+    60% {
+        transform: rotate(240deg) scale(0.98);
+        box-shadow: 0 0 8px var(--primary);
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+        box-shadow: 0 0 12px rgba(0, 0, 0, 0);
     }
 }

@@ -1,21 +1,23 @@
+@use '@styles/theme' as *;
+
 .badge {
-    padding: 0.2rem 0.5rem;
-    border-radius: 1rem;
-    font-size: 0.75rem;
-    font-weight: 500;
+    padding: $pad-xs $pad-sm;
+    border-radius: $border-radius-lg;
+    font-size: $fs-sm;
+    font-weight: $fw-reg;
     white-space: nowrap;
     color: #fff;
 }
 
-.primary {
-    background-color: #007bff;
+.info {
+    background-color: var(--info);
 }
 .success {
-    background-color: #28a745;
+    background-color: var(--success);
 }
 .warning {
-    background-color: #ffc107;
+    background-color: var(--warning);
 }
 .error {
-    background-color: #dc3545;
+    background-color: var(--error);
 }

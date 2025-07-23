@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import styles from './Toast.module.scss';
 
-interface ToastProps {
+type ToastProps = {
     message: string;
     onClose: () => void;
     duration?: number;
-}
+};
 
 const Toast: React.FC<ToastProps> = ({ message, onClose, duration = 3000 }) => {
     useEffect(() => {

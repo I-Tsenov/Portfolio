@@ -1,11 +1,11 @@
 import styles from './Badge.module.scss';
 
-interface Props {
+type Props = {
     text: string;
-    color?: 'primary' | 'success' | 'warning' | 'error';
+    color?: 'info' | 'success' | 'warning' | 'error';
     className?: string;
-}
+};
 
-export default function Badge({ text, color = 'primary', className = '' }: Props) {
+export default function Badge({ text, color = 'info', className = '' }: Props) {
     return <span className={`${styles.badge} ${styles[color]} ${className}`}>{text}</span>;
 }

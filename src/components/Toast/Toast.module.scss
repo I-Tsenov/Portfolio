@@ -1,11 +1,13 @@
+@use '@styles/theme' as *;
+
 .toast {
     position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    background-color: #222;
-    color: white;
-    padding: 1rem 1.5rem;
-    border-radius: 8px;
+    bottom: $pad-md;
+    right: $pad-md;
+    background-color: var(--bg-light);
+    color: var(--text);
+    padding: $pad-md $pad-lg;
+    border-radius: $border-radius-md;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
     z-index: 999;
     animation: fadeIn 0.3s ease-in-out;

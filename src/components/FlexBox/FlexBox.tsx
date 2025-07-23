@@ -2,14 +2,14 @@
 import styles from './FlexBox.module.scss';
 import { type ReactNode } from 'react';
 
-interface Props {
+type Props = {
     children: ReactNode;
     justify?: 'start' | 'center' | 'end' | 'space-between';
     align?: 'start' | 'center' | 'end';
     gap?: number;
     direction?: 'row' | 'column';
     className?: string;
-}
+};
 
 export default function FlexBox({
     children,
