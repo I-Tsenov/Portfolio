@@ -1,0 +1,129 @@
+@use '@styles/theme' as *;
+
+.container {
+    width: 100px;
+    margin: auto;
+
+    svg {
+        width: 100%;
+        height: auto;
+        overflow: visible;
+    }
+}
+
+.branchMain {
+    stroke-dasharray: 300;
+    stroke-dashoffset: 300;
+    animation: draw 2s ease-out forwards;
+}
+
+.branchOffUp {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: draw 2.5s ease-out forwards;
+}
+
+.branchOffDown {
+    stroke-dasharray: 80;
+    stroke-dashoffset: 80;
+    animation: draw 2.5s ease-out forwards;
+}
+
+.branchChild {
+    stroke-dasharray: 60;
+    stroke-dashoffset: 60;
+    animation: draw 2.8s ease-out forwards;
+}
+
+.blossom {
+    opacity: 0;
+    transform-origin: center;
+    transform-box: fill-box;
+    transform: translate(var(--tx), var(--ty)) scale(0.6);
+    animation: bloom 1.5s ease-out forwards;
+}
+
+.fallingPetal {
+    animation: fallPetal 5s ease-out infinite;
+}
+
+/* delay = longest draw animation (e.g. 2.8s) + tiny buffer */
+$draw-max: 3.7s;
+$shake-delay: ($draw-max + 0.2s);
+
+.shakeGroup {
+    transform-origin: 50% 90%; /* same pivot you had on SVG */
+    animation: sway 4s ease-in-out infinite $shake-delay;
+}
+
+.loadingLabel {
+    font-size: $fs-sm;
+    fill: var(--text);
+    letter-spacing: 0.5px;
+    opacity: 0;
+    animation: fadeInOut 3s ease-in-out infinite;
+}
+
+.spinnerRing {
+    transform-box: fill-box;
+    transform-origin: 50% 50%;
+    /* give it a visible arc instead of a closed ring */
+    stroke-dasharray: 60 240; /* 60px dash, 240px gap */
+    stroke-linecap: round; /* soften the ends of the dash */
+    animation: spin 3s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes draw {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes bloom {
+    to {
+        opacity: 1;
+        transform: translate(var(--tx), var(--ty)) scale(1);
+    }
+}
+
+@keyframes fallPetal {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(20px) scale(1.1);
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(40px) scale(0.9);
+        opacity: 0;
+    }
+}
+
+@keyframes sway {
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(2deg);
+    }
+}
+
+@keyframes fadeInOut {
+    0%,
+    100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

@@ -2,12 +2,12 @@
 import React, { useRef, useState, useLayoutEffect } from 'react';
 import styles from './Tooltip.module.scss';
 
-interface TooltipProps {
+type TooltipProps = {
     children: React.ReactNode;
     content: React.ReactNode;
     position?: 'top' | 'bottom' | 'left' | 'right';
     offset?: number;
-}
+};
 
 const Tooltip: React.FC<TooltipProps> = ({ children, content, position = 'top', offset = 8 }) => {
     const [visible, setVisible] = useState(false);

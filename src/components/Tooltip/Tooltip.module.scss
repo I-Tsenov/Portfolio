@@ -1,12 +1,12 @@
-/* Tooltip.module.scss */
+@use '@styles/theme' as *;
 
 .tooltip {
     position: fixed;
     background: #333;
     color: #fff;
-    padding: 8px 12px;
-    border-radius: 4px;
-    font-size: 0.875rem;
+    padding: $pad-sm $pad-md;
+    border-radius: $border-radius-xs;
+    font-size: $fs-sm;
     white-space: nowrap;
     z-index: 1000;
 }

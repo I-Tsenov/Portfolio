@@ -1,6 +1,10 @@
 import Button from '@components/Button/Button';
 import styles from './Home.module.scss';
 import React from 'react';
+import Loader from '@components/Loader';
+import Toast from '@components/Toast';
+import Badge from '@components/Badge';
+import BlossomLoader from '@components/BlossomLoader';
 
 const Home: React.FC = () => {
     return (
@@ -21,6 +25,15 @@ const Home: React.FC = () => {
                     Disabled
                 </Button>
             </div>
+            <div className={styles.btnWrapper}>
+                <Badge text="info" color="info" />
+                <Badge text="success" color="success" />
+                <Badge text="warning" color="warning" />
+                <Badge text="error" color="error" />
+            </div>
+            <Loader />
+            <Toast message="This is a toast notification!" duration={3000} onClose={() => {}} />
+            <BlossomLoader />
         </div>
     );
 };
