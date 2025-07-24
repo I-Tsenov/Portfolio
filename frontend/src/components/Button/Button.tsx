@@ -2,13 +2,12 @@ import React from 'react';
 import styles from './Button.module.scss';
 
 type Variant = 'primary' | 'secondary' | 'ghost';
-
 type Props = {
-  children: React.ReactNode;
-  variant?: Variant;
-  disabled?: boolean;
-  onClick?: () => void;
-  type?: 'button' | 'submit' | 'reset';
+    children: React.ReactNode;
+    variant?: Variant;
+    disabled?: boolean;
+    onClick?: () => void;
+    type?: 'button' | 'submit' | 'reset';
 };
 
 const Button = ({ children, variant = 'primary', disabled = false, onClick, type = 'button' }: Props) => {

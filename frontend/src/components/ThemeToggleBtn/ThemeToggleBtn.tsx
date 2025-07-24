@@ -9,7 +9,6 @@ import type { RootState } from '@store/store';
 
 const ThemeToggleBtn = () => {
     const mode = useSelector((state: RootState) => state.theme.mode);
-
     const dispatch = useDispatch();
 
     const handleToggle = () => {
