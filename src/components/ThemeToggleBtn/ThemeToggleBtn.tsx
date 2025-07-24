@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleTheme } from '../../features/Theme/themeSlice';
 import { ReactComponent as MoonIcon } from '@assets/moon_icon.svg';
@@ -6,8 +6,6 @@ import { ReactComponent as SunIcon } from '@assets/sun_icon.svg';
 import Toggle from '@components/Toggle';
 import Tooltip from '@components/Tooltip';
 import type { RootState } from '@store/store';
-
-// import styles from './ThemeToggleBtn.module.css'
 
 const ThemeToggleBtn = () => {
     const mode = useSelector((state: RootState) => state.theme.mode);
@@ -19,7 +17,7 @@ const ThemeToggleBtn = () => {
     };
 
     // Apply theme to <html> on update
-    useEffect(() => {
+    useLayoutEffect(() => {
         document.documentElement.setAttribute('data-theme', mode);
     }, [mode]);
 

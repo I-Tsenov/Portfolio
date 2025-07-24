@@ -7,8 +7,11 @@ type ThemeState = {
     mode: ThemeMode;
 };
 
+const getSystemTheme = (): ThemeMode => (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+const storedTheme = localStorage.getItem('app-theme') as ThemeMode | null;
+
 const initialState: ThemeState = {
-    mode: 'light',
+    mode: storedTheme ?? getSystemTheme(),
 };
 
 const themeSlice = createSlice({
@@ -16,10 +19,12 @@ const themeSlice = createSlice({
     initialState,
     reducers: {
         toggleTheme: (state) => {
-            state.mode = state.mode === 'light' ? 'dark' : 'light';
+            state.mode = state.mode === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('app-theme', state.mode);
         },
         setTheme: (state, action: PayloadAction<ThemeMode>) => {
             state.mode = action.payload;
+            localStorage.setItem('app-theme', action.payload);
         },
     },
 });

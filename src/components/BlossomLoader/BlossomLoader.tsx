@@ -177,10 +177,11 @@ const BlossomLoader: React.FC = () => {
                 {/* falling petals */}
                 <g ref={petalGroup} />
             </svg>
-
-            <text x="50" y="95" textAnchor="middle" className={styles.loadingLabel}>
-                Loading…
-            </text>
+            <svg>
+                <text x="50" y="20" textAnchor="middle" className={styles.loadingLabel}>
+                    Loading…
+                </text>
+            </svg>
         </div>
     );
 };

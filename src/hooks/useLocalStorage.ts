@@ -1,14 +1,25 @@
-import { useEffect } from "react";
+import { useState } from 'react';
 
-function useClickOutside(ref: React.RefObject<HTMLElement>, handler: () => void) {
-  useEffect(() => {
-    const listener = (e: MouseEvent) => {
-      if (!ref.current || ref.current.contains(e.target as Node)) return;
-      handler();
+function useLocalStorage<T>(key: string, initialValue: T) {
+    const [storedValue, setStoredValue] = useState<T>(() => {
+        try {
+            const item = window.localStorage.getItem(key);
+            return item ? JSON.parse(item) : initialValue;
+        } catch {
+            return initialValue;
+        }
+    });
+
+    const setValue = (value: T) => {
+        try {
+            setStoredValue(value);
+            window.localStorage.setItem(key, JSON.stringify(value));
+        } catch {
+            // Fallback error handling
+        }
     };
-    document.addEventListener('mousedown', listener);
-    return () => document.removeEventListener('mousedown', listener);
-  }, [ref, handler]);
+
+    return [storedValue, setValue] as const;
 }
 
-export default useClickOutside;
+export default useLocalStorage;
