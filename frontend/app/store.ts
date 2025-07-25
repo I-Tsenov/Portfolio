@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 // Example: Add your reducers here
-import themeReducer from '@features/Theme/themeSlice';
-import contactReducer from '@features/ContactForm/contactSlice';
+import themeReducer from '@src/features/Theme/themeSlice';
+import contactReducer from '@src/features/ContactForm/contactSlice';
 
 export const store = configureStore({
     reducer: {

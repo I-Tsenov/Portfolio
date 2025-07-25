@@ -1,10 +1,10 @@
-import Button from '@components/Button/Button';
+import Button from '@src/components/Button/Button';
 import styles from './Home.module.scss';
 import React from 'react';
-import Loader from '@components/Loader';
-import Toast from '@components/Toast';
-import Badge from '@components/Badge';
-import BlossomLoader from '@components/BlossomLoader';
+import Loader from '@src/components/Loader';
+import Toast from '@src/components/Toast';
+import Badge from '@src/components/Badge';
+import BlossomLoader from '@src/components/BlossomLoader';
 
 const Home: React.FC = () => {
     return (

@@ -12,11 +12,14 @@ type SendMessageResponse = {
     success: boolean;
 };
 
+const API_BASE = import.meta.env.VITE_API_BASE;
+console.log('API Base URL:', API_BASE); // ✅ should log correctly
+
 export const sendMessage = createAsyncThunk<SendMessageResponse, ContactFormData, { rejectValue: string }>(
     'contact/sendMessage',
     async (formData, thunkAPI) => {
         try {
-            const res = await fetch('/api/send-message', {
+            const res = await fetch(`${API_BASE}/contact/send-message`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),
@@ -39,7 +42,7 @@ export const sendMessage = createAsyncThunk<SendMessageResponse, ContactFormData
 type ContactState = {
     status: 'idle' | 'loading' | 'succeeded' | 'failed';
     error: string | null;
-}
+};
 
 const initialState: ContactState = { status: 'idle', error: null };
 

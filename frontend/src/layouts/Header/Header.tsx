@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import ThemeToggleBtn from '@components/ThemeToggleBtn';
+import ThemeToggleBtn from '@src/components/ThemeToggleBtn';
 import styles from './Header.module.scss';
 
 const navLinks = [

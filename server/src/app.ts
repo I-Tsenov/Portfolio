@@ -1,17 +1,25 @@
-import express from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import contactRouter from './routes/contact';
-
-dotenv.config();
+import express from "express";
+import cors from "cors";
+import contactRouter from "./routes/contact";
+import { FRONTEND_ORIGIN } from "./config";
 
 const app = express();
 
-app.use(cors({
-  origin: process.env.FRONTEND_ORIGIN,  // e.g. http://localhost:3000
-}));
+app.use(
+  cors({
+    origin: FRONTEND_ORIGIN || "http://localhost:5173",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
+// 👇 Handles CORS preflight checks
+// app.options("*", cors());
+
 app.use(express.json());
 
-app.use('/api', contactRouter);
+// 👇 Main routes
+app.use("/api", contactRouter);
 
 export default app;

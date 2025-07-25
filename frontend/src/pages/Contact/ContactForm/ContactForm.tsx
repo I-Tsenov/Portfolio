@@ -1,7 +1,7 @@
 // ContactForm.tsx
 import styles from './ContactForm.module.scss';
 import { useAppDispatch } from '@src/hooks/redux';
-import { sendMessage } from '@features/ContactForm/contactSlice';
+import { sendMessage } from '@src/features/ContactForm/contactSlice';
 import { useState } from 'react';
 import Button from '@src/components/Button';
 

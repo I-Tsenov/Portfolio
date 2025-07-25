@@ -11,6 +11,6 @@ const limiter = rateLimit({
   message: { error: 'Too many requests, please try again later.' },
 });
 
-router.post('/send-message', limiter, handleSendMessage);
+router.post('/contact/send-message', limiter, handleSendMessage);
 
 export default router;

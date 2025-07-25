@@ -1,25 +1,48 @@
-import nodemailer from 'nodemailer';
-import dotenv from 'dotenv';
-
-dotenv.config();
+import nodemailer from "nodemailer";
+import {
+  SMTP_HOST,
+  SMTP_PORT,
+  SMTP_USER,
+  SMTP_PASS,
+  EMAIL_FROM,
+  EMAIL_TO,
+} from "../config";
 
 const transporter = nodemailer.createTransport({
-  host:     process.env.SMTP_HOST,
-  port:     Number(process.env.SMTP_PORT),
-  secure:   Number(process.env.SMTP_PORT) === 465, // true for 465, false for other ports
+  host: SMTP_HOST,
+  port: Number(SMTP_PORT),
+  secure: Number(SMTP_PORT) === 465, // true for 465, false for other ports
   auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
+    user: SMTP_USER,
+    pass: SMTP_PASS,
   },
+  logger: true,
+  debug: true,
 });
 
-export async function sendContactEmail({ name, email, message }: { name: string; email: string; message: string }) {
+// transporter.verify((err, success) => {
+//   if (err) {
+//     console.error("Email transport error:", err);
+//   } else {
+//     console.log("Email transporter is ready to send!");
+//   }
+// });
+
+export async function sendContactEmail({
+  name,
+  email,
+  message,
+}: {
+  name: string;
+  email: string;
+  message: string;
+}) {
   const mailOptions = {
-    from:    process.env.EMAIL_FROM,       // e.g. '"Site Contact" <no-reply@yourdomain.com>'
-    to:      process.env.EMAIL_TO,         // your personal or business email
+    from: EMAIL_FROM, // e.g. '"Site Contact" <no-reply@yourdomain.com>'
+    to: EMAIL_TO, // your personal or business email
     subject: `New contact form message from ${name}`,
-    text:    `
-      You’ve received a new message from ${name} <${email}>:
+    text: `
+      You've received a new message from ${name} <${email}>:
       
       ${message}
     `,
