@@ -1,0 +1,12 @@
+.linkWrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+}

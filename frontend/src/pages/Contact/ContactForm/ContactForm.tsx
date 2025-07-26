@@ -5,7 +5,12 @@ import { sendMessage } from '@src/features/ContactForm/contactSlice';
 import { useState } from 'react';
 import Button from '@src/components/Button';
 
-const ContactForm: React.FC = () => {
+type ContactFormProps = {
+    className?: string;
+};
+
+const ContactForm: React.FC<ContactFormProps> = ({ className }) => {
+    console.log('classname', className)
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
     const dispatch = useAppDispatch();
 
@@ -27,7 +32,12 @@ const ContactForm: React.FC = () => {
     };
 
     return (
-        <form className={styles.form} onSubmit={handleSubmit} noValidate aria-label="Contact Me Form">
+        <form
+            className={`${styles.form} ${className ?? ''}`}
+            onSubmit={handleSubmit}
+            noValidate
+            aria-label="Contact Me Form"
+        >
             <label htmlFor="name">Name</label>
             <input
                 id="name"
@@ -62,7 +72,7 @@ const ContactForm: React.FC = () => {
                 aria-invalid={formData.message.trim() === ''}
                 value={formData.message}
                 onChange={handleChange}
-            ></textarea>
+            />
 
             <Button type="submit" variant="primary">
                 Send

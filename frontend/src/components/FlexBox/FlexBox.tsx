@@ -27,7 +27,7 @@ export default function FlexBox({
                 flexDirection: direction,
                 justifyContent: justify,
                 alignItems: align,
-                gap,
+                gap: gap + 'rem',
             }}
         >
             {children}
