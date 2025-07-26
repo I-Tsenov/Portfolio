@@ -14,7 +14,6 @@ const Contact: React.FC = () => (
         <section className={styles.imageLayer} />
         {/* Content layer */}
         <section className={styles.contentLayer}>
-            <p>Socials</p>
             <FlexBox gap={2.5} justify="center" align="center" className={styles.iconWrapper}>
                 <LinkWrapper href="https://www.linkedin.com/in/ivan-tsenov" target="_blank" ariaLabel="GitHub Profile">
                     <LinkedinIcon />
@@ -29,7 +28,7 @@ const Contact: React.FC = () => (
                     <FacebookIcon />
                 </LinkWrapper>
             </FlexBox>
-            <p>or contact me by sending a message</p>
+            <p>or contact me by sending a message below</p>
             <ContactForm className={styles.compactForm} />
         </section>
     </section>

@@ -22,6 +22,10 @@
     z-index: 0;
 }
 
+.iconWrapper {
+    margin-top: $pad-xl;
+}
+
 .contentLayer {
     grid-column: 2;
     display: flex;
