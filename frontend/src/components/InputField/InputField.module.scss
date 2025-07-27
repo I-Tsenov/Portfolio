@@ -1,7 +1,7 @@
 @use '@styles/theme' as *;
 
 .wrapper {
-    margin-bottom: $pad-md;
+    margin-bottom: $pad-xs;
 }
 
 .label {
@@ -12,7 +12,7 @@
     width: 100%;
     outline: none;
     padding: $pad-sm;
-    border: 1px solid var(--border);
+    border: 2px solid var(--border);
     border-radius: $border-radius-xs;
 
     &:focus {

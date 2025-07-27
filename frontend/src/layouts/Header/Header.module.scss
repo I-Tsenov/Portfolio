@@ -5,7 +5,6 @@
     font-size: 2.2rem;
     color: var(--primary);
     font-weight: $fw-bold;
-
     &:hover {
         color: var(--secondary);
     }
@@ -15,11 +14,12 @@
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 1.5rem;
-
+    height: 5rem;
+    margin: 0 $pad-lg;
     color: var(--text);
     background: var(--bg);
+    container-name: headerMain;
+    container-type: inline-size;
 }
 
 .navigation {
@@ -44,4 +44,14 @@
     transition:
         color 0.2s ease,
         font-weight 0.2s ease;
+}
+
+@container headerMain (max-width: 650px) {
+    .logoHeader {
+        display: none;
+    }
+    .navigation {
+        left: 15%;
+        transform: translateX(-15%);
+    }
 }

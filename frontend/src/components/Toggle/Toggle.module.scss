@@ -3,6 +3,10 @@
 .toggleWrapper {
     display: flex;
     align-items: center;
+    position: absolute;
+    align-self: center;
+    right: 0;
+    z-index: 1000;
     gap: $pad-sm;
     cursor: pointer;
 
