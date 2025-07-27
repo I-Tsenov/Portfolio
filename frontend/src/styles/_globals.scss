@@ -35,3 +35,17 @@ select {
     border-radius: var($border-radius-sm);
     padding: var($pad-xs);
 }
+
+#toast-root {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+/* Ensure individual toasts can still receive pointer events if needed */
+#toast-root > div {
+    pointer-events: all;
+    margin-bottom: 0.5rem;
+}

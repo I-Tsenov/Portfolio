@@ -1,0 +1,40 @@
+@use '@styles/theme' as *;
+
+.wrapper {
+    margin-bottom: $pad-md;
+}
+
+.label {
+    font-size: $fs-base;
+}
+
+.input {
+    width: 100%;
+    outline: none;
+    padding: $pad-sm;
+    border: 1px solid var(--border);
+    border-radius: $border-radius-xs;
+
+    &:focus {
+        border: 2px solid var(--focus);
+    }
+}
+
+.error {
+    border: 3px solid var(--error);
+
+    &:hover,
+    &:focus {
+        border: 3px solid var(--error);
+    }
+}
+
+.helperText {
+    color: var(--error);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.labelGroup {
+    margin-bottom: $pad-sm;
+}

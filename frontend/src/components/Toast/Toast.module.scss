@@ -1,25 +1,35 @@
 @use '@styles/theme' as *;
 
 .toast {
-    position: fixed;
-    bottom: $pad-md;
-    right: $pad-md;
-    background-color: var(--bg-light);
-    color: var(--text);
     padding: $pad-md $pad-lg;
-    border-radius: $border-radius-md;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
-    z-index: 999;
-    animation: fadeIn 0.3s ease-in-out;
+    border-radius: $border-radius-xs;
+    margin: $pad-sm;
+    font-size: $fs-sm;
+    box-shadow: 0 2px 6px $shadow-md;
+    transition: opacity 0.3s ease;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.default {
+    background-color: var(--bg-dark);
+    color: var(--text);
+}
+
+.info {
+    background-color: var(--info);
+    color: var(--text);
+}
+
+.success {
+    background-color: var(--success);
+    color: var(--text);
+}
+
+.warning {
+    background-color: var(--warning);
+    color: var(--text);
+}
+
+.error {
+    background-color: var(--error);
+    color: var(--text);
 }
