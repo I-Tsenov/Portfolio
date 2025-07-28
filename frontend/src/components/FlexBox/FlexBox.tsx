@@ -6,6 +6,7 @@ import styles from './FlexBox.module.scss';
 type FlexProps = {
     children?: ReactNode;
     className?: string;
+    fullWidth?: boolean;
     direction?: CSSProperties['flexDirection'];
     justify?: CSSProperties['justifyContent'];
     align?: CSSProperties['alignItems'];
@@ -14,6 +15,7 @@ type FlexProps = {
 };
 
 const flexStyles = css<FlexProps>`
+    ${({ fullWidth = false }) => `width: ${fullWidth ? '100%' : 'auto'}`};
     ${({ direction = 'row' }) => `flex-direction: ${direction};`}
     ${({ justify = 'flex-start' }) => `justify-content: ${justify};`}
   ${({ align = 'flex-start' }) => `align-items: ${align};`}

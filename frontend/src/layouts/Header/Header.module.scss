@@ -1,10 +1,14 @@
 @use '../../styles/design.scss' as *;
 
+//responsible to avoid layout shifts against active nav items due to font weight changes
+$nav-item-min-width: 5rem !default;
+
 .logoHeader {
     text-decoration: none;
     font-size: 2.2rem;
     color: var(--primary);
     font-weight: $fw-bold;
+
     &:hover {
         color: var(--secondary);
     }
@@ -14,8 +18,9 @@
     position: relative;
     display: flex;
     align-items: center;
-    height: 5rem;
-    margin: 0 $pad-lg;
+    justify-content: space-between;
+    height: 4rem;
+    padding: 0 $pad-lg;
     color: var(--text);
     background: var(--bg);
     container-name: headerMain;
@@ -24,13 +29,14 @@
 
 .navigation {
     display: flex;
-    gap: $pad-xl;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    align-items: center;
+    gap: $pad-lg;
 }
 
 .navItem {
+    display: inline-block;
+    text-align: center;
+    min-width: $nav-item-min-width;
     text-decoration: none;
     color: var(--text);
     font-size: $fs-lg;
@@ -51,8 +57,9 @@
         display: none;
     }
     .navigation {
-        left: 5%;
-        transform: translateX(-5%);
         gap: $pad-md;
+    }
+    .navItem {
+        font-size: $fs-lg;
     }
 }
