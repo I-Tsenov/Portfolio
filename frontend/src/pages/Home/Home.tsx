@@ -4,7 +4,6 @@ import React from 'react';
 import Loader from '@src/components/Loader';
 import Toast from '@src/components/Toast';
 import Badge from '@src/components/Badge';
-import BlossomLoader from '@src/components/BlossomLoader';
 
 const Home: React.FC = () => {
     return (
@@ -33,7 +32,6 @@ const Home: React.FC = () => {
             </div>
             <Loader />
             <Toast message="This is a toast notification!" duration={3000} onClose={() => {}} />
-            <BlossomLoader />
         </div>
     );
 };

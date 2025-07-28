@@ -1,6 +1,12 @@
 // src/components/BlossomLoader/BlossomLoader.tsx
 import React, { useEffect, useRef } from 'react';
+import ReactDOM from 'react-dom';
 import styles from './BlossomLoader.module.scss';
+
+type BlossomLoaderProps = {
+    loading: boolean;
+    fullscreen?: boolean;
+};
 
 const RADIUS = 48;
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
@@ -86,9 +92,10 @@ const BLOSSOM_DEFS = [
     { x: 32, y: 70, color: 'lavenderblush', delay: 2.4 },
 ];
 
-const BlossomLoader: React.FC = () => {
+const BlossomLoader: React.FC<BlossomLoaderProps> = ({ loading, fullscreen = false }) => {
     const petalGroup = useRef<SVGGElement>(null);
 
+    // spawn and remove falling petals
     useEffect(() => {
         const spawnPetal = () => {
             if (!petalGroup.current) return;
@@ -103,11 +110,12 @@ const BlossomLoader: React.FC = () => {
             c.setAttribute('fill', 'pink');
             c.classList.add(styles.fallingPetal);
             petalGroup.current.appendChild(c);
-            setTimeout(() => petalGroup.current?.removeChild(c), 6000);
+            setTimeout(() => {
+                petalGroup.current?.removeChild(c);
+            }, 6000);
         };
 
         const interval = setInterval(() => {
-            // spawn 2 petals each tick
             spawnPetal();
             spawnPetal();
         }, 700);
@@ -115,75 +123,82 @@ const BlossomLoader: React.FC = () => {
         return () => clearInterval(interval);
     }, []);
 
-    return (
-        <div className={styles.container}>
-            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                {/* multi‐color spinner */}
-                {SPINNER_COLORS.map((color, i) => (
-                    <circle
-                        key={i}
-                        className={styles.spinnerRing}
-                        cx="50"
-                        cy="50"
-                        r={RADIUS}
-                        fill="none"
-                        stroke={color}
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        style={{
-                            strokeDasharray: `${SPINNER_SEGMENT} ${CIRCUMFERENCE - SPINNER_SEGMENT}`,
-                            strokeDashoffset: -SPINNER_SEGMENT * i,
-                        }}
-                    />
-                ))}
+    if (!loading) return null;
 
-                <g className={styles.shakeGroup}>
-                    {/* all branches */}
-                    {BRANCH_DEFS.map(({ key, d, className, stroke, strokeWidth, delay }) => (
-                        <path
-                            key={key}
-                            d={d}
-                            className={className}
-                            stroke={stroke}
-                            strokeWidth={strokeWidth}
+    const overlayContent = (
+        <div className={`${styles.overlay} ${fullscreen ? styles.fullscreen : styles.inline}`}>
+            <div className={styles.container}>
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    {/* multi-color spinner */}
+                    {SPINNER_COLORS.map((color, i) => (
+                        <circle
+                            key={i}
+                            className={styles.spinnerRing}
+                            cx="50"
+                            cy="50"
+                            r={RADIUS}
                             fill="none"
-                            style={{ animationDelay: `${delay}s` }}
+                            stroke={color}
+                            strokeWidth="4"
+                            strokeLinecap="round"
+                            style={{
+                                strokeDasharray: `${SPINNER_SEGMENT} ${CIRCUMFERENCE - SPINNER_SEGMENT}`,
+                                strokeDashoffset: -SPINNER_SEGMENT * i,
+                            }}
                         />
                     ))}
 
-                    {/* all blossoms */}
-                    {BLOSSOM_DEFS.map(({ x, y, color, delay }, i) => (
-                        <g
-                            key={i}
-                            className={styles.blossom}
-                            style={
-                                {
-                                    '--tx': `${x}px`,
-                                    '--ty': `${y}px`,
-                                    animationDelay: `${delay}s`,
-                                } as React.CSSProperties
-                            }
-                        >
-                            <circle cx="0" cy="-3" r="2.2" fill={color} />
-                            <circle cx="2.8" cy="-0.9" r="2.2" fill={color} />
-                            <circle cx="1.7" cy="2.4" r="2.2" fill={color} />
-                            <circle cx="-1.7" cy="2.4" r="2.2" fill={color} />
-                            <circle cx="-2.8" cy="-0.9" r="2.2" fill={color} />
-                            <circle cx="-1.7" cy="-0.9" r="2.2" fill={color} />
-                        </g>
-                    ))}
-                </g>
+                    <g className={styles.shakeGroup}>
+                        {/* branches */}
+                        {BRANCH_DEFS.map(({ key, d, className, stroke, strokeWidth, delay }) => (
+                            <path
+                                key={key}
+                                d={d}
+                                className={className}
+                                stroke={stroke}
+                                strokeWidth={strokeWidth}
+                                fill="none"
+                                style={{ animationDelay: `${delay}s` }}
+                            />
+                        ))}
 
-                {/* falling petals */}
-                <g ref={petalGroup} />
-            </svg>
-            <svg>
-                <text x="50" y="20" textAnchor="middle" className={styles.loadingLabel}>
-                    Loading…
-                </text>
-            </svg>
+                        {/* blossoms */}
+                        {BLOSSOM_DEFS.map(({ x, y, color, delay }, i) => (
+                            <g
+                                key={i}
+                                className={styles.blossom}
+                                style={
+                                    {
+                                        '--tx': `${x}px`,
+                                        '--ty': `${y}px`,
+                                        animationDelay: `${delay}s`,
+                                    } as React.CSSProperties
+                                }
+                            >
+                                <circle cx="0" cy="-3" r="2.2" fill={color} />
+                                <circle cx="2.8" cy="-0.9" r="2.2" fill={color} />
+                                <circle cx="1.7" cy="2.4" r="2.2" fill={color} />
+                                <circle cx="-1.7" cy="2.4" r="2.2" fill={color} />
+                                <circle cx="-2.8" cy="-0.9" r="2.2" fill={color} />
+                                <circle cx="-1.7" cy="-0.9" r="2.2" fill={color} />
+                            </g>
+                        ))}
+                    </g>
+
+                    {/* falling petals container */}
+                    <g ref={petalGroup} />
+                </svg>
+
+                <svg>
+                    <text x="50" y="20" textAnchor="middle" className={styles.loadingLabel}>
+                        Loading…
+                    </text>
+                </svg>
+            </div>
         </div>
     );
+
+    return fullscreen ? ReactDOM.createPortal(overlayContent, document.body) : overlayContent;
 };
 
 export default BlossomLoader;

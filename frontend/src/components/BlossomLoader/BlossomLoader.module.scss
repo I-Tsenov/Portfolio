@@ -1,5 +1,25 @@
 @use '@styles/theme' as *;
 
+// Overlay background – shared by both modes
+.overlay {
+    inset: 0;
+    background: $overlay-bg;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+// Inline overlay (parent-scoped)
+.inline {
+    position: absolute;
+}
+
+// Fullscreen overlay via portal
+.fullscreen {
+    position: fixed;
+}
+
 .container {
     width: 100px;
     margin: auto;
@@ -47,12 +67,11 @@
     animation: fallPetal 5s ease-out infinite;
 }
 
-/* delay = longest draw animation (e.g. 2.8s) + tiny buffer */
 $draw-max: 3.7s;
 $shake-delay: ($draw-max + 0.2s);
 
 .shakeGroup {
-    transform-origin: 50% 90%; /* same pivot you had on SVG */
+    transform-origin: 50% 90%; /* same pivot as SVG */
     animation: sway 4s ease-in-out infinite $shake-delay;
 }
 
@@ -67,9 +86,8 @@ $shake-delay: ($draw-max + 0.2s);
 .spinnerRing {
     transform-box: fill-box;
     transform-origin: 50% 50%;
-    /* give it a visible arc instead of a closed ring */
     stroke-dasharray: 60 240; /* 60px dash, 240px gap */
-    stroke-linecap: round; /* soften the ends of the dash */
+    stroke-linecap: round; /* soften dash ends */
     animation: spin 3s linear infinite;
     pointer-events: none;
 }

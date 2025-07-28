@@ -1,19 +1,16 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-// 1. Define the shape of your form data
 type ContactFormData = {
     name: string;
     email: string;
     message: string;
 };
 
-// 2. Define the shape of the successful response
 type SendMessageResponse = {
     success: boolean;
 };
 
 const API_BASE = import.meta.env.VITE_API_BASE;
-console.log('API Base URL:', API_BASE); // ✅ should log correctly
 
 export const sendMessage = createAsyncThunk<SendMessageResponse, ContactFormData, { rejectValue: string }>(
     'contact/sendMessage',
