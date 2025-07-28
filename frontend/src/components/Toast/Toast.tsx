@@ -12,7 +12,7 @@ export interface ToastProps {
     variant?: ToastVariant;
 }
 
-const Toast: React.FC<ToastProps> = ({ message, onClose, duration = 7000, variant = 'default' }) => {
+const Toast: React.FC<ToastProps> = ({ message, onClose, duration = 5000, variant = 'default' }) => {
     const elRef = useRef<HTMLDivElement>(document.createElement('div'));
 
     // Mount into #toast-root and clean up reliably
