@@ -12,6 +12,7 @@ type FlexProps = {
     align?: CSSProperties['alignItems'];
     gap?: CSSProperties['gap'];
     wrap?: CSSProperties['flexWrap'];
+    flex?: CSSProperties['flex'];
 };
 
 const flexStyles = css<FlexProps>`
@@ -21,6 +22,7 @@ const flexStyles = css<FlexProps>`
   ${({ align = 'flex-start' }) => `align-items: ${align};`}
   ${({ gap = '0rem' }) => `gap: ${gap}rem;`}
   ${({ wrap = 'nowrap' }) => `flex-wrap: ${wrap};`}
+  flex: ${({ flex }) => flex ?? '0 1 auto'};
 `;
 
 const BaseFlex = styled.div.attrs((props: FlexProps) => ({

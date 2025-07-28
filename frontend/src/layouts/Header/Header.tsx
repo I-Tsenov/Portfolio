@@ -2,7 +2,6 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import ThemeToggleBtn from '@src/components/ThemeToggleBtn';
 import styles from './Header.module.scss';
-import FlexBox from '@src/components/FlexBox';
 
 const navLinks = [
     { to: '/', label: 'Home' },
@@ -16,10 +15,10 @@ const Header: React.FC = () => {
 
     return (
         <header className={styles.header}>
-            <Link className={styles.logoHeader} key="logo_header" to="/">
+            <Link to="/" className={styles.logoHeader}>
                 {'< IT >'}
             </Link>
-            <FlexBox justify="space-between" align="center" gap={3} fullWidth>
+            <div className={styles.navGroup}>
                 <nav className={styles.navigation}>
                     {navLinks.map((link) => (
                         <Link
@@ -32,7 +31,7 @@ const Header: React.FC = () => {
                     ))}
                 </nav>
                 <ThemeToggleBtn />
-            </FlexBox>
+            </div>
         </header>
     );
 };

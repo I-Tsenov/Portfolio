@@ -1,30 +1,41 @@
-@use '../../styles/design.scss' as *;
+@use '@styles/design.scss' as *;
 
-//responsible to avoid layout shifts against active nav items due to font weight changes
+// avoid layout shifts on active nav items
 $nav-item-min-width: 5rem !default;
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 4rem;
+    padding: 0 $pad-lg;
+    background: var(--bg);
+    color: var(--text);
+
+    container-name: headerMain;
+    container-type: inline-size;
+}
 
 .logoHeader {
     text-decoration: none;
     font-size: 2.2rem;
-    color: var(--primary);
     font-weight: $fw-bold;
+    color: var(--primary);
+    white-space: nowrap;
+    margin-right: $pad-lg;
 
     &:hover {
         color: var(--secondary);
     }
 }
 
-.header {
-    position: relative;
-    display: flex;
+.navGroup {
+    // shrink-wrap on large screens
+    display: inline-flex;
     align-items: center;
     justify-content: space-between;
-    height: 4rem;
-    padding: 0 $pad-lg;
-    color: var(--text);
-    background: var(--bg);
-    container-name: headerMain;
-    container-type: inline-size;
+    gap: $pad-lg;
 }
 
 .navigation {
@@ -35,12 +46,12 @@ $nav-item-min-width: 5rem !default;
 
 .navItem {
     display: inline-block;
-    text-align: center;
     min-width: $nav-item-min-width;
     text-decoration: none;
     color: var(--text);
     font-size: $fs-lg;
     font-weight: $fw-reg;
+    text-align: center;
 }
 
 .navItemActive {
@@ -56,10 +67,14 @@ $nav-item-min-width: 5rem !default;
     .logoHeader {
         display: none;
     }
+
+    .navGroup {
+        // become full-width block-flex so space-between spans the header
+        display: flex;
+        width: 100%;
+    }
+
     .navigation {
         gap: $pad-md;
-    }
-    .navItem {
-        font-size: $fs-lg;
     }
 }
