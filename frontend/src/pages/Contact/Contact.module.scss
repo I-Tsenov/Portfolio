@@ -5,7 +5,7 @@
     grid-template-columns: minmax(0px, 7fr) minmax(320px, 3fr);
     width: 100%;
     height: 100%;
-    container-name: contactWrapper;
+    container-name: mainWrapper;
     container-type: inline-size;
     overflow: hidden;
 }
@@ -38,9 +38,11 @@
     background-color: var(--bg-light);
     box-shadow: var(--shadow-md);
     overflow: auto;
+    container-name: contentWrapper;
+    container-type: inline-size;
 }
 
-@container contactWrapper (max-width: 1200px) {
+@container mainWrapper (max-width: 1200px) {
     .wrapper {
         grid-template-columns: 1fr 1fr;
     }
@@ -50,16 +52,19 @@
     .compactForm {
         padding: 0;
     }
-    .iconWrapper {
-        gap: 2rem !important;
-    }
 }
 
-@container contactWrapper (max-width: 650px) {
+@container mainWrapper (max-width: 650px) {
     .imageLayer {
         display: none;
     }
     .contentLayer {
         grid-column: 1 / -1; // spans full width
+    }
+}
+
+@container contentWrapper (max-width: 350px) {
+    .contentLayer .iconWrapper {
+        gap: $pad-lg;
     }
 }

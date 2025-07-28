@@ -24,7 +24,7 @@
 
 .navigation {
     display: flex;
-    gap: $pad-md;
+    gap: $pad-xl;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -51,7 +51,8 @@
         display: none;
     }
     .navigation {
-        left: 15%;
-        transform: translateX(-15%);
+        left: 5%;
+        transform: translateX(-5%);
+        gap: $pad-md;
     }
 }

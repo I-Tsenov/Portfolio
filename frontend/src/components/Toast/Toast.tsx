@@ -31,9 +31,6 @@ const Toast: React.FC<ToastProps> = ({ message, onClose, duration = 7000, varian
         return () => clearTimeout(timer);
     }, [duration, onClose]);
 
-    console.log('CSS module keys:', Object.keys(styles));
-    console.log('Looking for:', `toast--${variant}`);
-
     const toastClass = `${styles.toast} ${styles[variant]}`.trim();
 
     return createPortal(
