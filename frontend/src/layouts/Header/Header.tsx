@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import ThemeToggleBtn from '@src/components/ThemeToggleBtn';
+import { ReactComponent as Logo } from '@assets/logo.svg';
 import styles from './Header.module.scss';
 
 const navLinks = [
@@ -16,7 +17,7 @@ const Header: React.FC = () => {
     return (
         <header className={styles.header}>
             <Link to="/" className={styles.logoHeader}>
-                {'< IT >'}
+                <Logo />
             </Link>
             <div className={styles.navGroup}>
                 <nav className={styles.navigation}>

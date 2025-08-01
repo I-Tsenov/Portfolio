@@ -1,12 +1,30 @@
-//import theme
+@use '@styles/theme' as *;
 
-@mixin responsive($breakpoint) {
+@mixin responsiveUp($breakpoint) {
     $value: map-get($breakpoints, $breakpoint);
 
     @if $value {
         @media (min-width: $value) {
             @content;
         }
+    }
+}
+
+@mixin responsiveDown($breakpoint) {
+    $value: map-get($breakpoints, $breakpoint);
+
+    @if $value {
+        @media (max-width: $value) {
+            @content;
+        }
+    }
+}
+
+@mixin responsiveFont($mobile, $desktop) {
+    font-size: $mobile;
+
+    @media screen and (min-width: 768px) {
+        font-size: $desktop;
     }
 }
 
@@ -17,26 +35,7 @@
 }
 
 @mixin respond($size) {
-  @media (min-width: map-get($breakpoints, $size)) {
-    @content;
-  }
+    @media (min-width: map-get($breakpoints, $size)) {
+        @content;
+    }
 }
-
-
-
-//usage example
-/* 
-@use '../styles/variables' as *;
-@use '../styles/mixins' as *;
-
-.card {
-  background-color: $primary-color;
-  color: $text-color;
-  padding: $spacing-md;
-
-  @include responsive(md) {
-    padding: $spacing-lg;
-  }
-}
-
-*/

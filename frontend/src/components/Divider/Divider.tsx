@@ -1,21 +1,25 @@
-// Divider.tsx
-import styles from './Divider.module.scss';
+import styled from 'styled-components';
 
 type Props = {
     vertical?: boolean;
-    thickness?: string;
+    thickness?: number;
     color?: string;
-}
+};
 
-export default function Divider({ vertical = false, thickness = '1px', color = '#ccc' }: Props) {
-    return (
-        <div
-            className={vertical ? styles.vertical : styles.horizontal}
-            style={{
-                backgroundColor: color,
-                width: vertical ? thickness : '100%',
-                height: vertical ? '100%' : thickness,
-            }}
-        />
-    );
+const DividerWrapper = styled.div<Required<Props>>`
+    background-color: ${({ color }) => (color ? color : 'red')};
+    ${({ vertical, thickness }) =>
+        vertical
+            ? `
+    width: ${thickness}px;
+    height: 100%;
+  `
+            : `
+    width: 100%;
+    height: ${thickness}px;
+  `}
+`;
+
+export default function Divider({ vertical = false, thickness = 1, color = '#ccc' }: Props) {
+    return <DividerWrapper vertical={vertical} thickness={thickness} color={color} />;
 }

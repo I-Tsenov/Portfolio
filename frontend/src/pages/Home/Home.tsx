@@ -1,37 +1,22 @@
-import Button from '@src/components/Button/Button';
-import styles from './Home.module.scss';
 import React from 'react';
-import Loader from '@src/components/Loader';
-import Toast from '@src/components/Toast';
-import Badge from '@src/components/Badge';
+import FlexBox from '@src/components/FlexBox';
+// import myImage from '@assets/face_abstract_web.png';
+import styles from './Home.module.scss';
+// import BubbleFrame from '@src/components/BubbleFrame';
+import IconStack from './IconStack';
 
 const Home: React.FC = () => {
     return (
         <div className={styles.mainWrapper}>
-            <h1>This is a website</h1>
-            <p>front-end developerment by humans</p>
-            <div className={styles.btnWrapper}>
-                <Button variant="primary" onClick={() => alert('Button clicked!')}>
-                    Primary
-                </Button>
-                <Button variant="secondary" onClick={() => alert('Button clicked!')}>
-                    Secondary
-                </Button>
-                <Button variant="ghost" onClick={() => alert('Button clicked!')}>
-                    Ghost
-                </Button>
-                <Button variant="primary" disabled onClick={() => alert('Button clicked!')}>
-                    Disabled
-                </Button>
-            </div>
-            <div className={styles.btnWrapper}>
-                <Badge text="info" color="info" />
-                <Badge text="success" color="success" />
-                <Badge text="warning" color="warning" />
-                <Badge text="error" color="error" />
-            </div>
-            <Loader />
-            <Toast message="This is a toast notification!" duration={3000} onClose={() => {}} />
+            <FlexBox align="start" direction="column" gap={4} directionMobile="column" gapMobile={2}>
+                <section className={styles.introduction}>
+                    <h1 className={styles.title}>Front-end React Developer</h1>
+                    <p>Hi! I am Ivan Tsenov. </p>
+                    <p>Front-end developer based in Sofia, Bulgaria. Welcome to my corner of the web.</p>
+                </section>
+                <IconStack />
+            </FlexBox>
+            {/* <BubbleFrame src={myImage} alt="Picture of myself" size="500px" className="bubbleWrap" /> */}
         </div>
     );
 };

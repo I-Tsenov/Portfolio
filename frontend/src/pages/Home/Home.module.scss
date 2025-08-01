@@ -1,12 +1,35 @@
-@use '../../styles/design.scss' as *;
+@use '@styles/design.scss' as *;
 
 .mainWrapper {
     display: flex;
-    flex-direction: column;
+    position: relative;
+    flex-direction: row;
+    justify-content: center;
     align-items: center;
-    height: 100%;
-    padding: $pad-lg;
+    margin: auto;
+    gap: 10rem;
+    height: calc(100% - 7rem);
+    width: 80%;
+
+    // @include responsiveDown(md) {
+    //     .bubbleWrap {
+    //         display: none;
+    //     }
+    // }
 }
+
+.introduction {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: $pad-sm;
+    color: var(--text);
+}
+
+.title {
+    @include responsiveFont($fs-h3, $fs-h1);
+}
+
 .btnWrapper {
     display: flex;
     justify-content: center;

@@ -1,10 +1,11 @@
+
 :root {
     --bg-dark: oklch(0.92 0.04 200);
     --bg: oklch(0.96 0.04 200);
     --bg-light: oklch(0.99 0.04 200);
     --text: oklch(0.15 0.08 230);
     --text-muted: oklch(0.42 0.05 230);
-    --highlight: oklch(92.448% 0.13996 139.566); /* brighter leaf accent */
+    --highlight: oklch(85% 0.17 139.566); /* brighter leaf accent */
     --border: oklch(0.64 0.05 200);
     --border-muted: oklch(0.72 0.04 200);
     --primary: oklch(0.5 0.1 190); /* teal: visible & friendly */
@@ -75,6 +76,9 @@ $fs-sm: 0.875rem;
 $fs-md: 1rem;
 $fs-lg: 1.25rem;
 $fs-xl: 1.5rem;
+$fs-h1: 2.8rem;
+$fs-h2: 2.4rem;
+$fs-h3: 2rem;
 $lh-base: 1.5; // line-height
 $fw-reg: 400;
 $fw-bold: 700;
