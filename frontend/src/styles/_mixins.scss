@@ -1,7 +1,8 @@
 @use '@styles/theme' as *;
+@use 'sass:map';
 
 @mixin responsiveUp($breakpoint) {
-    $value: map-get($breakpoints, $breakpoint);
+    $value: map.get($breakpoints, $breakpoint);
 
     @if $value {
         @media (min-width: $value) {
@@ -11,7 +12,7 @@
 }
 
 @mixin responsiveDown($breakpoint) {
-    $value: map-get($breakpoints, $breakpoint);
+    $value: map.get($breakpoints, $breakpoint);
 
     @if $value {
         @media (max-width: $value) {

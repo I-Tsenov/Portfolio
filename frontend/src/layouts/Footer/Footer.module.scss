@@ -1,0 +1,11 @@
+@use '@styles/design.scss' as *;
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3rem;
+    padding: 0 1rem;
+    background: var(--bg);
+    color: var(--text-muted);
+}
