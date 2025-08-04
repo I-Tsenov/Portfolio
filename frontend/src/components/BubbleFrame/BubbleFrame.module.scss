@@ -1,0 +1,116 @@
+@use 'sass:list';
+@use '@styles/design.scss' as *;
+
+.bubbleFrame {
+    position: relative;
+    overflow: visible;
+    width: 100%; // fill available space
+    max-width: max(150px, 25vw); // cap at your prop (300px by default)
+    aspect-ratio: 1 / 1; // always a square
+    border-radius: 50%;
+    --mask-color: var(--border-muted, #a1e4ce);
+}
+
+.bubble {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-origin: center center;
+    transform: translate(-50%, -50%);
+}
+
+.image {
+    display: block;
+    width: 110%;
+    height: 110%;
+    object-fit: cover;
+    user-select: none;
+    pointer-events: none;
+}
+
+// your desired start/end sizes and timings
+$start-sizes: (70%, 90%, 110%);
+$end-sizes: (70%, 85%, 110%);
+$pulse-times: (3.5s, 4.5s, 5.5s);
+$blob-times: (6s, 7s, 8s);
+$rotate-times: (18s, 22s);
+$rotate-dir: (normal, reverse);
+$colors: (var(--border-muted, #ddd), var(--border, #bbb), var(--highlight, #888));
+$delays: (0s, 0.4s, 0.8s);
+
+// Bubble 1 (your white “mask” + image) — unchanged
+.bubble1 {
+    width: list.nth($start-sizes, 1);
+    height: list.nth($start-sizes, 1);
+    overflow: hidden;
+    border: 4px solid var(--mask-color);
+    border-radius: 50%;
+    box-sizing: border-box;
+    z-index: 3;
+    animation:
+        bubble-pulse-1 list.nth($pulse-times, 1) ease-in-out infinite,
+        bubble-blob-1 list.nth($blob-times, 1) ease-in-out infinite;
+}
+
+// Bubbles 2 & 3
+@for $i from 2 through 3 {
+    $start: list.nth($start-sizes, $i);
+    $end: list.nth($end-sizes, $i);
+    $pulse: list.nth($pulse-times, $i);
+    $blob: list.nth($blob-times, $i);
+    $delay: list.nth($delays, $i);
+    $color: list.nth($colors, $i);
+    $r-time: list.nth($rotate-times, $i - 1);
+    $r-dir: list.nth($rotate-dir, $i - 1);
+
+    .bubble#{$i} {
+        width: $start;
+        height: $start;
+        border: 4px solid $color;
+        border-radius: 50%;
+        box-sizing: border-box;
+        z-index: #{10 - $i};
+
+        animation:
+            bubble-pulse-#{$i} #{$pulse} ease-in-out infinite #{$delay},
+            bubble-blob-#{$i} #{$blob} ease-in-out infinite #{$delay},
+            bubble-rotate-#{$i} #{$r-time} linear infinite #{$r-dir};
+    }
+}
+
+// Keyframes (unchanged)
+@for $i from 1 through 3 {
+    @keyframes bubble-pulse-#{$i} {
+        0%,
+        100% {
+            width: list.nth($start-sizes, $i);
+            height: list.nth($start-sizes, $i);
+        }
+        50% {
+            width: list.nth($end-sizes, $i);
+            height: list.nth($end-sizes, $i);
+        }
+    }
+    @keyframes bubble-blob-#{$i} {
+        0%,
+        100% {
+            border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%;
+        }
+        33% {
+            border-radius: 30% 60% 70% 40% / 60% 30% 60% 40%;
+        }
+        66% {
+            border-radius: 50% 50% 40% 60% / 40% 60% 50% 60%;
+        }
+    }
+}
+@for $i from 2 through 3 {
+    @keyframes bubble-rotate-#{$i} {
+        from {
+            transform: translate(-50%, -50%) rotate(0deg);
+        }
+        to {
+            transform: translate(-50%, -50%) rotate(360deg);
+        }
+    }
+}

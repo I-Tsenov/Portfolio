@@ -1,8 +1,8 @@
 import React from 'react';
 import FlexBox from '@src/components/FlexBox';
-// import myImage from '@assets/face_abstract_web.png';
+import myImage from '@assets/face_abstract_web.png';
 import styles from './Home.module.scss';
-// import BubbleFrame from '@src/components/BubbleFrame';
+import BubbleFrame from '@src/components/BubbleFrame';
 import IconStack from './IconStack';
 
 const Home: React.FC = () => {
@@ -16,7 +16,7 @@ const Home: React.FC = () => {
                 </section>
                 <IconStack />
             </FlexBox>
-            {/* <BubbleFrame src={myImage} alt="Picture of myself" size="500px" className="bubbleWrap" /> */}
+            <BubbleFrame src={myImage} alt="Picture of myself" className="bubbleWrap" />
         </div>
     );
 };

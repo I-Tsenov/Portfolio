@@ -3,19 +3,22 @@
 .mainWrapper {
     display: flex;
     position: relative;
+    flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    padding-top: 2rem;
     margin: auto;
-    gap: 10rem;
+    gap: 8rem;
     height: calc(100% - 7rem);
     width: 80%;
 
-    // @include responsiveDown(md) {
-    //     .bubbleWrap {
-    //         display: none;
-    //     }
-    // }
+    @include responsiveDown(lg) {
+        gap: 2rem;
+        // .bubbleWrap {
+        //     display: none;
+        // }
+    }
 }
 
 .introduction {
@@ -24,6 +27,10 @@
     text-align: left;
     gap: $pad-sm;
     color: var(--text);
+
+    p {
+        color: var(--text-muted);
+    }
 }
 
 .title {
