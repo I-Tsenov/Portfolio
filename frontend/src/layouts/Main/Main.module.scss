@@ -7,4 +7,5 @@
     height: calc(100vh - 7rem);
     font-size: $fs-lg;
     color: var(--text);
+    overflow: auto;
 }

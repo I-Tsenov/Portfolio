@@ -22,10 +22,10 @@ const AboutMe: React.FC = () => {
         <div className={styles.container}>
             <div className={styles.intro}>
                 <h1>Let's learn more about who I am</h1>
-                <p>A developer who always finds a way — someone who thrives on change.</p>
+                <p>A developer who thrives on change.</p>
             </div>
 
-            <Section title="Development is everchanging. Main reason to get into it.">
+            <Section title="Development is everchanging.">
                 As a person I am not doing great when it comes to routines, I get bored after a while. My desire and
                 curiosity to learn and grow is what drives the bus. Not afraid to look stupid if it will get me the
                 knowledge, fail forward as they say. Perfectionism is my best and worst character trait. If you want
