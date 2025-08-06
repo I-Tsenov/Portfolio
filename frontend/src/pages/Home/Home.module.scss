@@ -8,16 +8,13 @@
     justify-content: center;
     align-items: center;
     padding-top: 2rem;
-    margin: auto;
-    gap: 8rem;
-    height: calc(100% - 7rem);
+    margin: 0 auto;
+    gap: 5rem;
     width: 80%;
+    height: 100%;
 
-    @include responsiveDown(lg) {
+    @include responsiveDown(xl) {
         gap: 2rem;
-        // .bubbleWrap {
-        //     display: none;
-        // }
     }
 }
 
@@ -42,4 +39,16 @@
     justify-content: center;
     gap: $pad-md;
     padding: $pad-md;
+}
+
+.redirect {
+    text-decoration: none;
+    width: fit-content;
+    color: var(--secondary);
+    font-size: $fs-md;
+    font-weight: $fw-reg;
+
+    &:hover {
+        color: var(--highlight)
+    }
 }

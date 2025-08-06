@@ -1,51 +1,64 @@
-@use '@styles/theme' as *;
+@use '@styles/design.scss' as *;
+
+// Arrow sizes in rem
+$arrow-border: calc(6px / 16px) * 1rem; // 0.375rem
+$arrow-fill: calc(5px / 16px) * 1rem; // 0.3125rem
+
+// Mixin: $position, side to inset, axis prop & value, transform
+@mixin arrow($position, $inset-side, $cross-prop, $cross-value, $transform) {
+    &[data-position='#{$position}'] {
+        &::before,
+        &::after {
+            #{$inset-side}: -#{$arrow-border};
+            #{$cross-prop}: #{$cross-value};
+            transform: #{$transform};
+        }
+    }
+}
 
 .tooltip {
     position: fixed;
-    background: #333;
-    color: #fff;
+    background: var(--bg-light);
+    color: var(--text);
     padding: $pad-sm $pad-md;
+    border: 1px solid var(--border-muted);
     border-radius: $border-radius-xs;
     font-size: $fs-sm;
     white-space: nowrap;
     z-index: 1000;
-}
+    overflow: visible;
 
-@media (prefers-reduced-motion: reduce) {
-    .tooltip {
-        transition: none;
+    // draw both border + fill once
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        pointer-events: none;
     }
-}
 
-.arrow {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background-color: #333;
-    transform: rotate(45deg);
-}
+    &::before {
+        border-left: $arrow-border solid transparent;
+        border-right: $arrow-border solid transparent;
+        border-bottom: $arrow-border solid var(--border-muted);
+    }
+    &::after {
+        border-left: $arrow-fill solid transparent;
+        border-right: $arrow-fill solid transparent;
+        border-bottom: $arrow-fill solid var(--border-muted);
+    }
 
-/* Position-specific adjustments */
-.arrow[data-position='top'] {
-    bottom: -4px;
-    left: 50%;
-    transform: translateX(-50%) rotate(45deg);
-}
+    // Edge arrows
+    @include arrow(bottom, top, left, 50%, translateX(-50%) rotate(180deg));
+    @include arrow(top, bottom, left, 50%, translateX(-50%));
+    @include arrow(left, right, top, 50%, translateY(-50%) rotate(-90deg));
+    @include arrow(right, left, top, 50%, translateY(-50%) rotate(90deg));
 
-.arrow[data-position='bottom'] {
-    top: -4px;
-    left: 50%;
-    transform: translateX(-50%) rotate(45deg);
-}
-
-.arrow[data-position='left'] {
-    right: -4px;
-    top: 50%;
-    transform: translateY(-50%) rotate(45deg);
-}
-
-.arrow[data-position='right'] {
-    left: -4px;
-    top: 50%;
-    transform: translateY(-50%) rotate(45deg);
+    // Corner arrows
+    $corner-offset: $pad-sm + $arrow-fill;
+    @include arrow(bottomLeft, top, right, $corner-offset, translateX(0));
+    @include arrow(bottomRight, top, left, $corner-offset, translateX(0));
+    @include arrow(topLeft, bottom, right, $corner-offset, none);
+    @include arrow(topRight, bottom, left, $corner-offset, none);
 }

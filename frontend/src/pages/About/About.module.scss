@@ -18,7 +18,7 @@
     }
 
     p {
-        font-size: 1.1rem;
+        font-size: $fs-lg;
         color: var(--text-muted);
     }
 }
@@ -55,8 +55,8 @@
         }
 
         p {
-            font-size: 1rem;
-            line-height: 1.6;
+            font-size: $fs-md;
+            line-height: $lh-base;
             color: var(--text-muted);
         }
     }
@@ -76,7 +76,18 @@
 }
 
 @media (max-width: 768px) {
+    .intro {
+        h1 {
+            font-size: $fs-h2;
+        }
+
+        p {
+            font-size: $fs-md;
+        }
+    }
+
     .section {
+        font-size: $fs-h3;
         flex-direction: column;
 
         &.reverse {
@@ -85,17 +96,7 @@
 
         .image {
             width: 100%;
-            margin-top: 1rem;
-        }
-    }
-
-    .intro {
-        h1 {
-            font-size: 2rem;
-        }
-
-        p {
-            font-size: 1rem;
+            margin-top: $pad-md;
         }
     }
 }

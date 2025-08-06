@@ -21,7 +21,7 @@ const ThemeToggleBtn = () => {
     }, [mode]);
 
     return (
-        <Tooltip content={`Switch to ${mode === 'light' ? 'dark' : 'light'} mode`} position="top">
+        <Tooltip content={`Switch to ${mode === 'light' ? 'dark' : 'light'} mode`} position="bottomLeft">
             <Toggle checked={mode === 'light'} onChange={handleToggle} onIcon={<SunIcon />} offIcon={<MoonIcon />} />
         </Tooltip>
     );

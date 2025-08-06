@@ -18,6 +18,26 @@ body {
         color 0.3s ease;
 }
 
+/* Apply scrollbar styles globally */
+body,
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) transparent;
+
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--primary);
+        border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+}
+
 /* 3. Anchor Tags */
 a {
     color: var(--info);

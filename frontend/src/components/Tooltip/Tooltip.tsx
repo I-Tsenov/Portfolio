@@ -1,115 +1,134 @@
 // Tooltip.tsx
 import React, { useRef, useState, useLayoutEffect } from 'react';
+import { createPortal } from 'react-dom';
 import styles from './Tooltip.module.scss';
 
+type CornerPosition = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
+type EdgePosition = 'top' | 'bottom' | 'left' | 'right';
+type TooltipPosition = CornerPosition | EdgePosition;
 type TooltipProps = {
     children: React.ReactNode;
     content: React.ReactNode;
-    position?: 'top' | 'bottom' | 'left' | 'right';
+    position?: TooltipPosition;
     offset?: number;
 };
+
+// Helper: compute all eight placements, corners use center-edge logic
+function computePosition(
+    wrap: DOMRect,
+    tip: DOMRect,
+    pos: TooltipPosition,
+    offset: number
+): { top: number; left: number } {
+    const cx = wrap.left + wrap.width / 2;
+
+    switch (pos) {
+        case 'top':
+            return { top: wrap.top - tip.height - offset, left: cx - tip.width / 2 };
+        case 'bottom':
+            return { top: wrap.bottom + offset, left: cx - tip.width / 2 };
+        case 'left':
+            return {
+                top: wrap.top + wrap.height / 2 - tip.height / 2,
+                left: wrap.left - tip.width - offset,
+            };
+        case 'right':
+            return {
+                top: wrap.top + wrap.height / 2 - tip.height / 2,
+                left: wrap.right + offset,
+            };
+        case 'topLeft':
+            return { top: wrap.top - tip.height - offset, left: cx - tip.width };
+        case 'topRight':
+            return { top: wrap.top - tip.height - offset, left: cx };
+        case 'bottomLeft':
+            return { top: wrap.bottom + offset, left: cx - tip.width };
+        case 'bottomRight':
+            return { top: wrap.bottom + offset, left: cx };
+        default:
+            return { top: 0, left: 0 };
+    }
+}
+
+const CORNERS: CornerPosition[] = ['topLeft', 'topRight', 'bottomLeft', 'bottomRight'];
 
 const Tooltip: React.FC<TooltipProps> = ({ children, content, position = 'top', offset = 8 }) => {
     const [visible, setVisible] = useState(false);
     const [style, setStyle] = useState<React.CSSProperties>({});
-    const [resolvedPosition, setResolvedPosition] = useState<'top' | 'bottom' | 'left' | 'right'>(position);
-    const tooltipRef = useRef<HTMLDivElement>(null);
+    const [resolvedPosition, setResolved] = useState<TooltipPosition>(position);
+
     const wrapperRef = useRef<HTMLDivElement>(null);
-    const tooltipId = useRef(`tooltip-${Math.random().toString(36).substr(2, 9)}`);
+    const tooltipRef = useRef<HTMLDivElement>(null);
 
     useLayoutEffect(() => {
-        if (visible && tooltipRef.current && wrapperRef.current) {
-            const tooltipEl = tooltipRef.current.getBoundingClientRect();
-            const wrapperEl = wrapperRef.current.getBoundingClientRect();
-            const viewport = {
-                width: window.innerWidth,
-                height: window.innerHeight,
-            };
+        if (!visible || !wrapperRef.current || !tooltipRef.current) return;
 
-            const computePosition = (pos: 'top' | 'bottom' | 'left' | 'right') => {
-                const positions: Record<string, React.CSSProperties> = {
-                    top: {
-                        top: wrapperEl.top - tooltipEl.height - offset,
-                        left: wrapperEl.left + wrapperEl.width / 2 - tooltipEl.width / 2,
-                    },
-                    bottom: {
-                        top: wrapperEl.bottom + offset,
-                        left: wrapperEl.left + wrapperEl.width / 2 - tooltipEl.width / 2,
-                    },
-                    left: {
-                        top: wrapperEl.top + wrapperEl.height / 2 - tooltipEl.height / 2,
-                        left: wrapperEl.left - tooltipEl.width - offset,
-                    },
-                    right: {
-                        top: wrapperEl.top + wrapperEl.height / 2 - tooltipEl.height / 2,
-                        left: wrapperEl.right + offset,
-                    },
-                };
+        const wrapRect = wrapperRef.current.getBoundingClientRect();
+        const tipRect = tooltipRef.current.getBoundingClientRect();
+        const viewport = { width: window.innerWidth, height: window.innerHeight };
 
-                return positions[pos];
-            };
+        // 1. Raw placement
+        let nextStyle = computePosition(wrapRect, tipRect, position, offset);
+        let nextPosition = position;
 
-            // Try desired position first
-            let pos = computePosition(position);
+        // 2. Edge fallbacks (corners skip this)
+        const isCorner = CORNERS.includes(position as CornerPosition);
+        const fits = (xy: { top: number; left: number }) =>
+            xy.top >= 0 &&
+            xy.left >= 0 &&
+            xy.top + tipRect.height <= viewport.height &&
+            xy.left + tipRect.width <= viewport.width;
 
-            const fitsVertically =
-                typeof pos.top === 'number' && pos.top >= 0 && pos.top + tooltipEl.height <= viewport.height;
-            const fitsHorizontally =
-                typeof pos.left === 'number' && pos.left >= 0 && pos.left + tooltipEl.width <= viewport.width;
-
-            // Auto-fallbacks if overflowing
-            let actualPosition = position;
-            if (!fitsVertically || !fitsHorizontally) {
-                const fallbackOrder: ('bottom' | 'top' | 'right' | 'left')[] = ['bottom', 'top', 'right', 'left'];
-                for (const fallback of fallbackOrder) {
-                    const testPos = computePosition(fallback);
-                    const testTop = testPos.top ?? 0;
-                    const testLeft = testPos.left ?? 0;
-                    if (
-                        typeof testTop === 'number' &&
-                        typeof testLeft === 'number' &&
-                        testTop >= 0 &&
-                        testLeft >= 0 &&
-                        testTop + tooltipEl.height <= viewport.height &&
-                        testLeft + tooltipEl.width <= viewport.width
-                    ) {
-                        pos = testPos;
-                        actualPosition = fallback;
-                        break;
-                    }
+        if (!isCorner && !fits(nextStyle)) {
+            const FALLBACKS: EdgePosition[] = ['bottom', 'top', 'right', 'left'];
+            for (const fb of FALLBACKS) {
+                const trial = computePosition(wrapRect, tipRect, fb, offset);
+                if (fits(trial)) {
+                    nextStyle = trial;
+                    nextPosition = fb;
+                    break;
                 }
             }
-            setResolvedPosition(actualPosition);
-
-            // Clamp to viewport
-            if (typeof pos.top === 'number') {
-                pos.top = Math.max(0, Math.min(pos.top, viewport.height - tooltipEl.height));
-            }
-            if (typeof pos.left === 'number') {
-                pos.left = Math.max(0, Math.min(pos.left, viewport.width - tooltipEl.width));
-            }
-
-            setStyle(pos);
         }
+
+        // 3. Clamp inside viewport
+        nextStyle.top = Math.max(0, Math.min(nextStyle.top, viewport.height - tipRect.height));
+        nextStyle.left = Math.max(0, Math.min(nextStyle.left, viewport.width - tipRect.width));
+
+        setStyle(nextStyle);
+        setResolved(nextPosition);
     }, [visible, position, offset]);
+
+    // Portal so position: fixed is always viewport‐relative
+    const tooltipNode = visible
+        ? createPortal(
+              <div
+                  ref={tooltipRef}
+                  className={styles.tooltip}
+                  style={{ position: 'fixed', ...style }}
+                  role="tooltip"
+                  data-position={resolvedPosition}
+                  aria-hidden={!visible}
+              >
+                  <div className={styles.arrow} data-position={resolvedPosition} />
+                  {content}
+              </div>,
+              document.body
+          )
+        : null;
 
     return (
         <div
-            className={styles.wrapper}
             ref={wrapperRef}
+            className={styles.wrapper}
             onMouseEnter={() => setVisible(true)}
             onMouseLeave={() => setVisible(false)}
             onFocus={() => setVisible(true)}
             onBlur={() => setVisible(false)}
-            aria-describedby={tooltipId.current}
+            aria-describedby=""
         >
             {children}
-            {visible && (
-                <div className={styles.tooltip} style={style} ref={tooltipRef} role="tooltip" aria-hidden={!visible}>
-                    <div className={styles.arrow} data-position={resolvedPosition} />
-                    {content}
-                </div>
-            )}
+            {tooltipNode}
         </div>
     );
 };
