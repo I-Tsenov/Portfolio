@@ -8,14 +8,15 @@
     container-name: mainWrapper;
     container-type: inline-size;
     overflow: hidden;
+    background-color: var(--bg-dark);
 }
 
 .imageLayer {
+    position: relative;
     grid-column: 1;
-    background-image:
-        url('@assets/face_abstract_web_dark.png'), linear-gradient(to top, var(--bg-light), var(--bg-dark));
-    background-size: contain;
-    transform: scale(1.1);
+    background-image: url('@assets/face_abstract_web_dark.png');
+    background-size: cover;
+    transform: scale(1.35);
     background-position: center;
     background-repeat: no-repeat;
     background-color: var(--bg-dark);

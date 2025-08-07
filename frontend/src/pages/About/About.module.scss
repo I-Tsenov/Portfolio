@@ -64,14 +64,16 @@
     .image {
         flex: 1;
         height: 250px;
-        background: var(--gradient-accent);
-        // background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        background-image: url('@assets/hobby_panels.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
         clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
         transition: transform 0.3s ease;
     }
 
     &:hover .image {
-        transform: scale(1.05);
+        transform: scale(1.02);
     }
 }
 

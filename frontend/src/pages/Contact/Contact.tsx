@@ -24,7 +24,11 @@ const Contact: React.FC = () => (
                 <LinkWrapper href="https://www.instagram.com/tobetsenov/" target="_blank" ariaLabel="Instagram Profile">
                     <InstagramIcon />
                 </LinkWrapper>
-                <LinkWrapper href="https://www.facebook.com/ivan.tsenov.7/" target="_blank" ariaLabel="Facebook Profile">
+                <LinkWrapper
+                    href="https://www.facebook.com/ivan.tsenov.7/"
+                    target="_blank"
+                    ariaLabel="Facebook Profile"
+                >
                     <FacebookIcon />
                 </LinkWrapper>
             </FlexBox>

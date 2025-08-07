@@ -25,26 +25,26 @@ const AboutMe: React.FC = () => {
                 <p>A developer who thrives on change.</p>
             </div>
 
-            <Section title="Development is everchanging.">
-                As a person I am not doing great when it comes to routines, I get bored after a while. My desire and
-                curiosity to learn and grow is what drives the bus. Not afraid to look stupid if it will get me the
-                knowledge, fail forward as they say. Perfectionism is my best and worst character trait. If you want
-                something pixel perfect, you got it. I have 5 years of experience in software development, 3 of them
-                professionally working as front-end developer at ISI Emerging Markets.
+            <Section title="Intro">
+                My name is Ivan Tsenov, 33 years old based in Sofia, Bulgaria. Thank you for being part of my journey. I
+                have five years of development experience, three of which specializing in front-end software.
             </Section>
-
-            <Section title="Hobbies" reverse>
-                Free time I spend with my friends and dog, blue-eyed mischievous husky. Occasionally go to bouldering
-                and airsoft. Love hiking and trekking, in 2020 I did Kom-Emine route and it's one of the best
-                experiences I've had in my life.
+            <Section title="Personality" reverse>
+                I like to think of myself as open-minded, curious and creative. My perfectionism ensures attention to
+                detail, yet I know and tame the downsides of it daiy, prioritizing momentum and collaboration when
+                needed. I'm happy to “fail forward” if it means learning something new.
             </Section>
-
-            <Section title="Personal History">
-                I've worked many jobs. Starting as barista then grocery store employee, to engraver for an year in
-                Leeds, England, bycicle mechanic, sales-consultant and finally web developer. Even though I liked many
-                aspects of my previous jobs they became stale at a point and the reason to choose development is the
-                everchanging nature of it. Not a day is the same. It doesn't get boring, it keeps giving you challenges
-                and opportunities. This is where I invest myself, my career.
+            <Section title="Hobbies">
+                In my free time, I enjoy outdoor adventures with friends and my spirited blue-eyed husky. I'm always up
+                for new challenges—whether it's a bouldering session, an airsoft skirmish, or a multi-day trek. In 2020,
+                I completed the Kom-Emine trail, one of the most memorable experiences of my life.
+            </Section>
+            <Section title="Short History" reverse>
+                I've worked many jobs. Starting as barista, grocery store employee, to engraver for an year in Leeds,
+                England, bycicle mechanic, sales-consultant and finally web developer. Even though I liked many aspects
+                of my previous endevours they became stale at a point and the reason to choose development is the
+                shifting nature of it. Every day provides new challenges and opportunities. This is where I invest
+                myself, my career.
             </Section>
         </div>
     );
