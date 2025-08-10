@@ -14,27 +14,34 @@ const ContactForm: React.FC<{ className?: string }> = ({ className }) => {
     const status = useAppSelector((state) => state.contact.status);
     const isLoading = status === 'loading';
 
-    const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        message: '',
+    });
     const [errorState, setErrorState] = useState<Record<string, string>>({});
     const [touchedFields, setTouchedFields] = useState<Record<string, boolean>>({});
     const [toast, setToast] = useState<{ message: string; variant: ToastVariant } | null>(null);
 
     const debouncedFormData = useDebounce(formData, 600);
 
-    // Re-validate touched fields
+    // Re-validate only after first blur or submit
     useEffect(() => {
+        if (!Object.keys(touchedFields).length) return;
+
         const updates: Record<string, string> = {};
         Object.entries(debouncedFormData).forEach(([key, val]) => {
             if (touchedFields[key]) {
                 updates[key] = validateField(key, val);
             }
         });
+
         if (Object.keys(updates).length) {
             setErrorState((prev) => ({ ...prev, ...updates }));
         }
     }, [debouncedFormData, touchedFields]);
 
-    // Auto-reset status
+    // Auto-reset contact status
     useEffect(() => {
         if (status === 'succeeded' || status === 'failed') {
             const timer = setTimeout(() => dispatch(resetContactState()), 3000);
@@ -42,6 +49,7 @@ const ContactForm: React.FC<{ className?: string }> = ({ className }) => {
         }
     }, [status, dispatch]);
 
+    // Field-level validator
     const validateField = (name: string, value: string): string => {
         const trimmed = value.trim();
         switch (name) {
@@ -57,34 +65,39 @@ const ContactForm: React.FC<{ className?: string }> = ({ className }) => {
         }
     };
 
-    // compute overall form validity
+    // overall form validity
     const isFormValid = useMemo(() => {
-        // run validator on all fields
         return Object.entries(formData).every(([key, val]) => validateField(key, val) === '');
     }, [formData]);
 
+    // Handle input changes
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
-        if (!touchedFields[name]) {
-            setTouchedFields((prev) => ({ ...prev, [name]: true }));
-        }
     };
 
+    // Validate on blur
+    const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setTouchedFields((prev) => ({ ...prev, [name]: true }));
+        const errorMsg = validateField(name, value);
+        setErrorState((prev) => ({ ...prev, [name]: errorMsg }));
+    };
+
+    // Validate all & submit
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        // Full-sync validation and mark touched
         const syncErrors: Record<string, string> = {};
         Object.entries(formData).forEach(([key, val]) => {
             const msg = validateField(key, val);
             if (msg) syncErrors[key] = msg;
         });
+
         setErrorState(syncErrors);
         setTouchedFields(Object.keys(formData).reduce((acc, key) => ({ ...acc, [key]: true }), {}));
 
-        // stop here if invalid
-        if (!isFormValid) return;
+        if (Object.keys(syncErrors).length) return;
 
         try {
             await dispatch(sendMessage(formData)).unwrap();
@@ -112,9 +125,11 @@ const ContactForm: React.FC<{ className?: string }> = ({ className }) => {
                     type="text"
                     value={formData.name}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                     required
-                    errorMessage={errorState.name}
+                    errorMessage={touchedFields.name ? errorState.name : ''}
                 />
+
                 <InputField
                     id="email"
                     name="email"
@@ -122,9 +137,11 @@ const ContactForm: React.FC<{ className?: string }> = ({ className }) => {
                     type="email"
                     value={formData.email}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                     required
-                    errorMessage={errorState.email}
+                    errorMessage={touchedFields.email ? errorState.email : ''}
                 />
+
                 <InputField
                     id="message"
                     name="message"
@@ -132,14 +149,16 @@ const ContactForm: React.FC<{ className?: string }> = ({ className }) => {
                     type="textarea"
                     value={formData.message}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                     required
-                    errorMessage={errorState.message}
+                    errorMessage={touchedFields.message ? errorState.message : ''}
                 />
+
                 <Button type="submit" variant="primary" disabled={isLoading || !isFormValid}>
                     {isLoading ? 'Sending...' : 'Send'}
                 </Button>
             </form>
-            {/* loader's relative parent is Contact.tsx - contentLayer class*/}
+
             {isLoading && <BlossomLoader loading={true} />}
             {toast && <Toast message={toast.message} variant={toast.variant} onClose={() => setToast(null)} />}
         </>
