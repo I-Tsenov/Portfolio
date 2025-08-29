@@ -10,7 +10,6 @@ type InputFieldProps = {
     type?: 'text' | 'email' | 'textarea';
     value: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-    onBlur?: (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
     required?: boolean;
     className?: string;
     rows?: number; // only for textarea
@@ -24,7 +23,6 @@ const InputField: React.FC<InputFieldProps> = ({
     type = 'text',
     value,
     onChange,
-    onBlur,
     required = false,
     className = '',
     rows = 4,
@@ -37,7 +35,6 @@ const InputField: React.FC<InputFieldProps> = ({
         name,
         value,
         onChange,
-        onBlur,
         required,
         'aria-required': required,
         'aria-invalid': hasError,

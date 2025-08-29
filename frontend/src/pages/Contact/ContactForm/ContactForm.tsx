@@ -25,7 +25,7 @@ const ContactForm: React.FC<{ className?: string }> = ({ className }) => {
 
     const debouncedFormData = useDebounce(formData, 600);
 
-    // Re-validate only after first blur or submit
+    // Re-validate only after first or submit
     useEffect(() => {
         if (!Object.keys(touchedFields).length) return;
 
@@ -76,14 +76,6 @@ const ContactForm: React.FC<{ className?: string }> = ({ className }) => {
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
-    // Validate on blur
-    const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target;
-        setTouchedFields((prev) => ({ ...prev, [name]: true }));
-        const errorMsg = validateField(name, value);
-        setErrorState((prev) => ({ ...prev, [name]: errorMsg }));
-    };
-
     // Validate all & submit
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -125,7 +117,6 @@ const ContactForm: React.FC<{ className?: string }> = ({ className }) => {
                     type="text"
                     value={formData.name}
                     onChange={handleChange}
-                    onBlur={handleBlur}
                     required
                     errorMessage={touchedFields.name ? errorState.name : ''}
                 />
@@ -137,7 +128,6 @@ const ContactForm: React.FC<{ className?: string }> = ({ className }) => {
                     type="email"
                     value={formData.email}
                     onChange={handleChange}
-                    onBlur={handleBlur}
                     required
                     errorMessage={touchedFields.email ? errorState.email : ''}
                 />
@@ -149,7 +139,6 @@ const ContactForm: React.FC<{ className?: string }> = ({ className }) => {
                     type="textarea"
                     value={formData.message}
                     onChange={handleChange}
-                    onBlur={handleBlur}
                     required
                     errorMessage={touchedFields.message ? errorState.message : ''}
                 />
