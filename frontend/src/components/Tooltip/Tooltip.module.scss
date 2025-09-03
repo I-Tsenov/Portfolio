@@ -51,7 +51,7 @@ $arrow-fill: calc(5px / 16px) * 1rem; // 0.3125rem
 
     // Edge arrows
     @include arrow(bottom, top, left, 50%, translateX(-50%) rotate(180deg));
-    @include arrow(top, bottom, left, 50%, translateX(-50%));
+    @include arrow(top, bottom, left, 50%, translateX(-50%) rotate(-180deg));
     @include arrow(left, right, top, 50%, translateY(-50%) rotate(-90deg));
     @include arrow(right, left, top, 50%, translateY(-50%) rotate(90deg));
 

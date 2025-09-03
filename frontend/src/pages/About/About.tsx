@@ -1,15 +1,18 @@
 import React from 'react';
 import styles from './About.module.scss';
-import introImg from '@assets/intro_panel_dark.png';
+import introImgDark from '@assets/intro_panel_dark.png';
+import introImgLight from '@assets/intro_panel_light.png';
 import personalityImg from '@assets/personality_panel.png';
 import hobbiesImg from '@assets/hobby_panels.png';
 import historyImg from '@assets/history_panel.png';
+import { useAppSelector } from '@src/hooks/redux';
+import type { RootState } from '@store/store';
 
 type SectionProps = {
     title: string;
     children: React.ReactNode;
-    image: string;
     reverse?: boolean;
+    image: string;
 };
 
 const Section: React.FC<SectionProps> = ({ title, children, reverse = false, image }) => (
@@ -23,6 +26,8 @@ const Section: React.FC<SectionProps> = ({ title, children, reverse = false, ima
 );
 
 const AboutMe: React.FC = () => {
+    const mode = useAppSelector((state: RootState) => state.theme.mode);
+
     return (
         <div className={styles.container}>
             <div className={styles.intro}>
@@ -30,7 +35,7 @@ const AboutMe: React.FC = () => {
                 <p>A developer who thrives on change.</p>
             </div>
 
-            <Section title="Intro" image={introImg}>
+            <Section title="Introduction" image={mode === 'dark' ? introImgDark : introImgLight}>
                 My name is Ivan Tsenov, 33 years old based in Sofia, Bulgaria. Thank you for being part of my journey. I
                 have five years of development experience, three of which specializing in front-end software. React is
                 my framework of choice while having strong foundation in JavaScript, HTML, and CSS.
@@ -45,7 +50,7 @@ const AboutMe: React.FC = () => {
                 for new challenges—whether it's a bouldering session, an airsoft skirmish, or a multi-day trek. In 2020,
                 I completed the Kom-Emine trail, one of the most memorable experiences of my life.
             </Section>
-            <Section title="Short History"image={historyImg} reverse>
+            <Section title="Short History" image={historyImg} reverse>
                 I've worked various jobs. Starting as barista, store employee, to engraver for an year in Leeds, bycicle
                 mechanic, sales-consultant and finally web developer. Even though I liked many aspects of my previous
                 endevours they became stale at a point and the reason to choose development is the shifting nature of
