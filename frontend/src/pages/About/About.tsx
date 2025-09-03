@@ -27,7 +27,8 @@ const AboutMe: React.FC = () => {
 
             <Section title="Intro">
                 My name is Ivan Tsenov, 33 years old based in Sofia, Bulgaria. Thank you for being part of my journey. I
-                have five years of development experience, three of which specializing in front-end software.
+                have five years of development experience, three of which specializing in front-end software. React is
+                my framework of choice while having strong foundation in JavaScript, HTML, and CSS.
             </Section>
             <Section title="Personality" reverse>
                 I like to think of myself as open-minded, curious and creative. My perfectionism ensures attention to
@@ -40,11 +41,10 @@ const AboutMe: React.FC = () => {
                 I completed the Kom-Emine trail, one of the most memorable experiences of my life.
             </Section>
             <Section title="Short History" reverse>
-                I've worked many jobs. Starting as barista, grocery store employee, to engraver for an year in Leeds,
-                England, bycicle mechanic, sales-consultant and finally web developer. Even though I liked many aspects
-                of my previous endevours they became stale at a point and the reason to choose development is the
-                shifting nature of it. Every day provides new challenges and opportunities. This is where I invest
-                myself, my career.
+                I've worked various jobs. Starting as barista, store employee, to engraver for an year in Leeds, bycicle
+                mechanic, sales-consultant and finally web developer. Even though I liked many aspects of my previous
+                endevours they became stale at a point and the reason to choose development is the shifting nature of
+                it. Every day provides new challenges and opportunities. This is where I invest myself.
             </Section>
         </div>
     );
