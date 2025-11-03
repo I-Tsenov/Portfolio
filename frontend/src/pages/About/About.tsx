@@ -36,13 +36,13 @@ const AboutMe: React.FC = () => {
             </div>
 
             <Section title="Introduction" image={mode === 'dark' ? introImgDark : introImgLight}>
-                My name is Ivan Tsenov, 33 years old based in Sofia, Bulgaria. Thank you for being part of my journey. I
-                have five years of development experience, three of which specializing in front-end software. React is
+                My name is Ivan Tsenov, 33 years old developer based in Sofia, Bulgaria. Thank you for being part of my journey. I
+                have five years of programming experience, three of which specializing in front-end software. React is
                 my framework of choice while having strong foundation in JavaScript, HTML, and CSS.
             </Section>
             <Section title="Personality" image={personalityImg} reverse>
                 I like to think of myself as open-minded, curious and creative. My perfectionism ensures attention to
-                detail, yet I recognize and tame the downsides of it daiy, prioritizing momentum and collaboration when
+                detail, yet I recognize and tame the downsides of it daily, prioritizing momentum and collaboration when
                 needed. I'm happy to “fail forward” if it means learning something new.
             </Section>
             <Section title="Hobbies" image={hobbiesImg}>

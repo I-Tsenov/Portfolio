@@ -32,7 +32,7 @@ const Contact: React.FC = () => (
                     <FacebookIcon />
                 </LinkWrapper>
             </FlexBox>
-            <p>or contact me by sending a message below</p>
+            <span>or contact me by sending a message below</span>
             <ContactForm className={styles.compactForm} />
         </section>
     </section>
