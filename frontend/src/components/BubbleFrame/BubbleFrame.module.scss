@@ -78,6 +78,7 @@ $delays: (0s, 0.4s, 0.8s);
             bubble-pulse-#{$i} #{$pulse} ease-in-out infinite #{$delay},
             bubble-blob-#{$i} #{$blob} ease-in-out infinite #{$delay},
             bubble-rotate-#{$i} #{$r-time} linear infinite #{$r-dir};
+        animation-fill-mode: backwards; // Ensure initial styles are applied before animation starts / resolves initial jitter
     }
 }
 
