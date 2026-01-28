@@ -15,13 +15,13 @@ const Home: React.FC = () => {
                     <p>Hi! I am Ivan Tsenov. </p>
                     <p>Front-end developer based in Sofia, Bulgaria.</p>
                     <p>Welcome to my corner of the web.</p>
-                    <Link key={'contact'} to={'/contact'} className={styles.redirect}>
+                    <Link to={'/contact'} className={styles.redirect}>
                         Reach me
                     </Link>
                 </section>
                 <IconStack />
             </FlexBox>
-            <BubbleFrame src={myImage} alt="Picture of an eye" className="bubbleWrap" />
+            <BubbleFrame src={myImage} alt="abstract face" />
         </div>
     );
 };
